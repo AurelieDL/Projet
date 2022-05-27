@@ -50,6 +50,44 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 	}
 
+	public Utilisateur selectByEmail(String email)
+	{
+		Utilisateur user = null;
+		Connection cnx = null;
+		
+		try
+		{
+			cnx= ConnectionProvider.getConnection();
+			System.out.println("connected");
+			PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM UTILISATEURS WHERE email = ?");
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next())
+			{
+				user = new Utilisateur();
+				
+				user.setPseudo(rs.getString(2));
+				user.setNom(rs.getString(3));
+				user.setPrenom(rs.getString(4));
+				user.setEmail(rs.getString(5));
+				user.setTelephone(rs.getString(6));
+				user.setRue(rs.getString(7));
+				user.setCodePostal(rs.getString(8));
+				user.setVille(rs.getString(9));
+				user.setMotDePasse(rs.getString(10));
+				user.setCredit(rs.getInt(11));
+				user.setAdministrateur(rs.getBoolean(12));
+			}
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	
 	@Override
 	public List<Utilisateur> selectAll() {
 		return null;
@@ -61,6 +99,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
                 "jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE", "utilisateurBDD", "Pa$$w0rd");
              PreparedStatement preparedStatement = conn.prepareStatement(UPDATE))
 		{
+
+
 
 			PreparedStatement ps = conn.prepareStatement(UPDATE);
 
