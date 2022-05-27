@@ -16,7 +16,8 @@
 		<url-pattern>/connexion_session</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+
+	<servlet>
 		<servlet-name>majProfil</servlet-name>
 		<jsp-file>/WEB-INF/maj_profil.jsp</jsp-file>
 	</servlet>
@@ -24,6 +25,7 @@
 		<servlet-name>majProfil</servlet-name>
 		<url-pattern>/maj_profil</url-pattern>
 	</servlet-mapping>
-	
+
+
 
 </web-app>

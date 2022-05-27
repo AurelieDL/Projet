@@ -111,7 +111,7 @@ public class Utilisateur {
 	public void setAdministrateur(String administrateur) {
 		this.administrateur = administrateur;
 	}
-	
+
 // constructeur sans paramètres:
 	public Utilisateur() {
 	}
@@ -147,4 +147,10 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 	}
 
+	@Override
+	public String toString() {
+		return "Utilisateur [pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email
+				+ ", telephone=" + telephone + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville +", motDePasse=" + motDePasse + "]";
+
+	}
 }

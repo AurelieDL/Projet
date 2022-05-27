@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +21,15 @@
 </header>
 <body>
 	<h2 style="text-align: center">Mon Profil</h2>
-	<form class="maj-profil">
+	<form class="maj-profil" action="ServletMajProfil" method="post">
+
 
 		<div class="container">
 			<div class="block">
 
 				<div class="block-inner">
 					<label for="maj-pseudo">Pseudo: </label> <input type="text"
-						class="form-control" id="maj-pseudo" placeholder="" value=""
+						class="form-control" id="maj-pseudo" placeholder="${pseudo}" value="${pseudo}"
 						required>
 				</div>
 
@@ -89,18 +90,18 @@
 					passe: </label> <input type="text" class="form-control"
 					id="mconfirmation-mdp" placeholder="" value="" required>
 			</div>
-		
 
-		<div class="block-inner">
-				<label for="credit">Crédit: </label> <input type="number" class="form-control"
-					id="credit" placeholder="" value="" required>
+
+			<div class="block-inner">
+				<label for="credit">Crédit: </label> <input type="number"
+					class="form-control" id="credit" placeholder="" value="" required>
 			</div>
-		<div style="text-align: center; padding-top:20px;">
-			<a href="#" class="btn btn-primary" type="submit">Enregistrer</a> <a
-				href="#" class="btn btn-primary" type="submit">Supprimer mon
-				compte</a>
+			<div style="text-align: center; padding-top: 20px;">
+				<a href="#" class="btn btn-primary" type="submit">Enregistrer</a> <a
+					href="#" class="btn btn-primary" type="submit">Supprimer mon
+					compte</a>
+			</div>
 		</div>
-</div>
 	</form>
 
 </body>
