@@ -13,7 +13,7 @@ public class Utilisateur {
 	private String ville;
 	private String motDePasse;
 	private int credit;
-	private String administrateur;
+	private boolean administrateur;
 
 //Getters&setters:
 	public int getNoUtilisateur() {
@@ -104,11 +104,11 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public String getAdministrateur() {
+	public boolean getAdministrateur() {
 		return this.administrateur;
 	}
 
-	public void setAdministrateur(String administrateur) {
+	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
 	
@@ -118,7 +118,7 @@ public class Utilisateur {
 
 //constructeur entier:
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, String administrateur) {
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -145,6 +145,14 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
+	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
+				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
+				+ ", administrateur=" + administrateur + "]";
 	}
 
 }
