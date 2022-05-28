@@ -20,120 +20,98 @@
 	</nav>
 </header>
 <body>
-	<h2 style="text-align: center">Mon Profil</h2>
+	<div class="container">
+		<h2 class="mb-5" style="text-align: center">Mon Profil</h2>
 
 
-	<form action="${pageContext.request.contextPath}/ServletMajProfil"
-		method="post">
+		<form class="shadow p-3 mb-5 bg-body rounded" action="${pageContext.request.contextPath}/ServletMajProfil"
+			method="post">
 
-		<div class="block-inner">
-					<label for="maj-pseudo">Pseudo: </label> 
-					<input type="text" name="pseudo"
-						class="form-control"placeholder="${utilisateur.pseudo}" value="${utilisateur.pseudo}"
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-pseudo">Pseudo: </label> <input type="text"
+						name="pseudo" class="form-control"
+						placeholder="${utilisateur.pseudo}" value="${utilisateur.pseudo}"
 						required>
 				</div>
 
-				<div class="block-inner">
-					<label for="maj-prenom">Prénom:</label> 
-					<input type="text" name="prenom"
-						class="form-control"  placeholder="${prenom}" value="${prenom}"
+				<div class="col">
+					<label class="fw-bold" for="maj-email">Email:</label> <input type="text"
+						name="email" class="form-control"
+						placeholder="${utilisateur.email}" value="${utilisateur.email}"
 						required>
 				</div>
-		<div class="block-inner">
-			<label for="mdp">Mot de passe actuel: </label> 
-			<input type="text" name="mdp"
-				class="form-control" placeholder="" value="" required>
-		</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-nom">Nom:</label> <input type="text" name="nom"
+						class="form-control" placeholder="${utilisateur.nom}"
+						value="${utilisateur.nom}" required>
 
-		<p>
-			Submit button. <input type="submit" name="submit" value="submit" />
-		</p>
-	</form>
-
-
-
-	<!--  <form class="maj-profil" action="ServletMajProfil" method="post">
-
-
-		<div class="container">
-			<div class="block">
-
-				<div class="block-inner">
-					<label for="maj-pseudo">Pseudo: </label> <input type="text"
-						class="form-control" id="maj-pseudo" placeholder="${pseudo}" value="${pseudo}"
+				</div>
+				<div class="col">
+					<label class="fw-bold" for="maj-prenom">Prénom:</label> <input type="text"
+						name="prenom" class="form-control"
+						placeholder="${utilisateur.prenom}" value="${utilisateur.prenom}"
 						required>
 				</div>
+			</div>
 
-				<div class="block-inner">
-					<label for="maj-prenom">Prénom:</label> <input type="text"
-						class="form-control" id="maj-prenom" placeholder="" value=""
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-telephone">Téléphone:</label> <input type="text"
+						name="telephone" class="form-control"
+						placeholder="${utilisateur.telephone}"
+						value="${utilisateur.telephone}" required>
+				</div>
+
+				<div class="col">
+					<label class="fw-bold" for="maj-rue">Rue:</label> <input type="text" name="rue"
+						class="form-control" placeholder="${utilisateur.rue}"
+						value="${utilisateur.rue}" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-codePostal">Code Postal:</label> <input type="text"
+						name="codePostal" class="form-control"
+						placeholder="${utilisateur.codePostal}"
+						value="${utilisateur.codePostal}" required>
+				</div>
+
+				<div class="col">
+					<label class="fw-bold" for="maj-ville">Ville:</label> <input type="text"
+						name="ville" class="form-control"
+						placeholder="${utilisateur.ville}" value="${utilisateur.ville}"
 						required>
 				</div>
-
-				<div class="block-inner">
-					<label for="maj-telephone">Téléphone: </label> <input type="text"
-						class="form-control" id="maj-telephone" placeholder="" value=""
-						required>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="mdp">Mot de passe actuel: </label> <input type="password"
+						name="mdp" class="form-control"
+						placeholder="${utilisateur.motDePasse}"
+						value="${utilisateur.motDePasse}" required>
 				</div>
 
-				<div class="block-inner">
-					<label for="maj-codePostal">Code postal: </label> <input
-						type="text" class="form-control" id="maj-codePostal"
-						placeholder="" value="" required>
+				<div class="col">
+					<label class="fw-bold" for="new-mdp">Nouveau mot de passe: </label> <input
+						type="password" name="new-mdp" class="form-control" placeholder=""
+						value="">
 				</div>
 
-			</div>
-			<div class="block-inner">
-				<label for="maj-nom">Nom: </label> <input type="text"
-					class="form-control" id="maj-nom" placeholder="" value="" required>
-			</div>
-
-			<div class="block-inner">
-				<label for="maj-email">Email: </label> <input type="text"
-					class="form-control" id="maj-email" placeholder="" value=""
-					required>
-			</div>
-
-			<div class="block-inner">
-				<label for="maj-rue">Rue: </label> <input type="text"
-					class="form-control" id="maj-rue" placeholder="" value="" required>
-			</div>
-
-			<div class="block-inner">
-				<label for="maj-ville">Ville: </label> <input type="text"
-					class="form-control" id="maj-ville" placeholder="" value=""
-					required>
-			</div>
-
-			<div class="block-inner">
-				<label for="mdp">Mot de passe actuel: </label> <input type="text"
-					class="form-control" id="mdp" placeholder="" value="" required>
-			</div>
-
-			<div class="block-inner">
-				<label for="maj-nouveauMdp">Nouveau mot de passe: </label> <input
-					type="text" class="form-control" id="maj-nouveauMdp" placeholder=""
-					value="" required>
-			</div>
-
-			<div class="block-inner">
-				<label for="confirmation-mdp">Confirmation nouveau mot de
-					passe: </label> <input type="text" class="form-control"
-					id="mconfirmation-mdp" placeholder="" value="" required>
-			</div>
-
-
-			<div class="block-inner">
-				<label for="credit">Crédit: </label> <input type="number"
-					class="form-control" id="credit" placeholder="" value="" required>
+				<div class="col">
+					<label class="fw-bold" for="conf-mdp">Confirmer le nouveau mot de passe: </label> <input
+						type="password" name="conf-mdp" class="form-control" placeholder=""
+						value="">
+				</div>
 			</div>
 			<div style="text-align: center; padding-top: 20px;">
-				<a href="#" class="btn btn-primary" type="submit" name="submit" >Enregistrer</a> <a
-					href="#" class="btn btn-primary">Supprimer mon
-					compte</a>
+				<input type="submit" name="submit" class="btn btn-primary"
+					value="Enregistrer" /> <input type="submit" name="submit"
+					class="btn btn-primary" value="Supprimer mon compte" />
 			</div>
-		</div>
-	</form>-->
-
+		</form>
+	</div>
 </body>
 </html>
