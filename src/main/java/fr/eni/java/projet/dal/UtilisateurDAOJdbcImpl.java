@@ -11,19 +11,20 @@ import java.util.List;
 import fr.eni.java.projet.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
-	private static final String UPDATE = "UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, codePostal=?, ville=?, motDePasse=? WHERE id=?";
+	private static final String UPDATE = "UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 	
 	@Override
 	public void insert(Utilisateur utilisateur) {
 
 	}
+	
+	
 
 	private static final String SELECT = "SELECT * FROM utilisateurs WHERE no_utilisateur=";
 	
 	@Override
 	public Utilisateur selectById(int noUtilisateur) {
 		
-		// Utilisateur utilisateur = 
 		
 		String query = this.SELECT + String.valueOf(noUtilisateur);
 		
@@ -33,14 +34,28 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			
 			if (rs.next()) {
 
-				System.out.print(rs.getString(1));
-				System.out.print(rs.getString(2));
+				Utilisateur utilisateur = new Utilisateur(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getInt(11),
+						rs.getBoolean(12)
+						);
+
+				return utilisateur;
+
 			}
 			
+			return new Utilisateur();
 			
-
-			return null;
-			
+				
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -113,6 +128,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			ps.setString(7, utilisateur.getCodePostal());
 			ps.setString(8, utilisateur.getVille());
 			ps.setString(9, utilisateur.getMotDePasse());
+			ps.setInt(10, utilisateur.getNoUtilisateur());
 
 			ps.executeUpdate();
 			ps.close();
@@ -132,16 +148,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	}
 	
-	private Connection getConnectionautre() {
-		try {
-			return DriverManager.getConnection(
-			        "jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE", "utilisateurBDD", "Pa$$w0rd");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
 	
 	private Connection getConnection() {
 

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +21,46 @@
 </header>
 <body>
 	<h2 style="text-align: center">Mon Profil</h2>
-	<form class="maj-profil">
+
+
+	<form action="${pageContext.request.contextPath}/ServletMajProfil"
+		method="post">
+
+		<div class="block-inner">
+					<label for="maj-pseudo">Pseudo: </label> 
+					<input type="text" name="pseudo"
+						class="form-control"placeholder="${utilisateur.pseudo}" value="${utilisateur.pseudo}"
+						required>
+				</div>
+
+				<div class="block-inner">
+					<label for="maj-prenom">Prénom:</label> 
+					<input type="text" name="prenom"
+						class="form-control"  placeholder="${prenom}" value="${prenom}"
+						required>
+				</div>
+		<div class="block-inner">
+			<label for="mdp">Mot de passe actuel: </label> 
+			<input type="text" name="mdp"
+				class="form-control" placeholder="" value="" required>
+		</div>
+
+		<p>
+			Submit button. <input type="submit" name="submit" value="submit" />
+		</p>
+	</form>
+
+
+
+	<!--  <form class="maj-profil" action="ServletMajProfil" method="post">
+
 
 		<div class="container">
 			<div class="block">
 
 				<div class="block-inner">
 					<label for="maj-pseudo">Pseudo: </label> <input type="text"
-						class="form-control" id="maj-pseudo" placeholder="" value=""
+						class="form-control" id="maj-pseudo" placeholder="${pseudo}" value="${pseudo}"
 						required>
 				</div>
 
@@ -89,19 +121,19 @@
 					passe: </label> <input type="text" class="form-control"
 					id="mconfirmation-mdp" placeholder="" value="" required>
 			</div>
-		
 
-		<div class="block-inner">
-				<label for="credit">Crédit: </label> <input type="number" class="form-control"
-					id="credit" placeholder="" value="" required>
+
+			<div class="block-inner">
+				<label for="credit">Crédit: </label> <input type="number"
+					class="form-control" id="credit" placeholder="" value="" required>
 			</div>
-		<div style="text-align: center; padding-top:20px;">
-			<a href="#" class="btn btn-primary" type="submit">Enregistrer</a> <a
-				href="#" class="btn btn-primary" type="submit">Supprimer mon
-				compte</a>
+			<div style="text-align: center; padding-top: 20px;">
+				<a href="#" class="btn btn-primary" type="submit" name="submit" >Enregistrer</a> <a
+					href="#" class="btn btn-primary">Supprimer mon
+					compte</a>
+			</div>
 		</div>
-</div>
-	</form>
+	</form>-->
 
 </body>
 </html>

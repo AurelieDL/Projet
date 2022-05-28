@@ -19,21 +19,35 @@ public class ServletMajProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
+	private int UTILISATEUR_ACTUEL_ID = 1;
+	
 	UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
+	
+	private Utilisateur getUtilisateurConnecte() {
+		// Pour l'instant on utilise un utilisateur en dur
+		// todo: gestion de l'utilisateur connecté
+		return utilisateurDAO.selectById(UTILISATEUR_ACTUEL_ID);	
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-        
-		Utilisateur utilisateur = utilisateurDAO.selectById(1);
-	
-		request.setAttribute("pseudo", "coucou");
+		request.setAttribute("utilisateur", getUtilisateurConnecte());
         request.getRequestDispatcher("/WEB-INF/maj_profil.jsp").forward(request, response);		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		Utilisateur utilisateur = getUtilisateurConnecte();
+		
+        String username = request.getParameter("pseudo");
+        String prenom = request.getParameter("prenom");
+        String mdp = request.getParameter("mdp");
+        
+        utilisateur.setPseudo(username);
+        utilisateur.setPrenom(prenom);
+        utilisateur.setMotDePasse(mdp);
 
-
-	
+        utilisateurDAO.update(utilisateur);
 	}
 
 }
