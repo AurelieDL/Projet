@@ -94,21 +94,23 @@
 						value="${utilisateur.motDePasse}" required>
 				</div>
 
-				<div class="col">
-					<label class="fw-bold" for="new-mdp">Nouveau mot de passe: </label> <input
+				<div class="col auth-pass-inputgroup">
+					<label class="fw-bold" for="new-mdp">Nouveau mot de passe: </label> 
+					<input
 						type="password" name="new-mdp" class="form-control" placeholder=""
-						value="">
+						value="" minlength="8" required>
 				</div>
 
 				<div class="col">
 					<label class="fw-bold" for="conf-mdp">Confirmer le nouveau mot de passe: </label> <input
-						type="password" name="conf-mdp" class="form-control" placeholder=""
+						type="password" name="conf-mdp" class="form-control" autocomplete="off"
 						value="">
 				</div>
 			</div>
 			<div style="text-align: center; padding-top: 20px;">
 				<input type="submit" name="submit" class="btn btn-primary"
-					value="Enregistrer" /> <input type="submit" name="submit"
+					value="Enregistrer" /> 
+					<input type="submit" name="submit"
 					class="btn btn-primary" value="Supprimer mon compte" />
 			</div>
 		</form>
