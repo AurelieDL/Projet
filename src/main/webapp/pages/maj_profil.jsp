@@ -88,21 +88,23 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<label class="fw-bold" for="mdp">Mot de passe actuel: </label> <input type="password"
+					<label class="fw-bold" for="mdp">Mot de passe actuel: </label> 
+					<input type="password"
 						name="mdp" class="form-control"
 						placeholder="${utilisateur.motDePasse}"
-						value="${utilisateur.motDePasse}" required>
+						value="${utilisateur.motDePasse}">
 				</div>
 
 				<div class="col auth-pass-inputgroup">
 					<label class="fw-bold" for="new-mdp">Nouveau mot de passe: </label> 
 					<input
 						type="password" name="new-mdp" class="form-control" placeholder=""
-						value="" minlength="8" required>
+						value="">
 				</div>
 
 				<div class="col">
-					<label class="fw-bold" for="conf-mdp">Confirmer le nouveau mot de passe: </label> <input
+					<label class="fw-bold" for="conf-mdp">Confirmer le nouveau mot de passe: </label> 
+					<input
 						type="password" name="conf-mdp" class="form-control" autocomplete="off"
 						value="">
 				</div>
