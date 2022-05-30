@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.java.projet.bll.UtilisateurManager;
+import fr.eni.java.projet.bo.Utilisateur;
+
 /**
  * Servlet implementation class ServletInscriptionUtilisateur
  */
@@ -48,10 +51,10 @@ public class ServletInscriptionUtilisateur extends HttpServlet {
 		String motDePasse = (String) request.getParameter("mdp");
 		
 		// Il faudra bien envoyer les infos vers le bas ! J'ai repris l'exemple de ajoutAvis
-		// UtilisateurManager utilisateurManager = new UtilisateurManager();
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
 		
 		// Là il faut faire référence à une méthode qu'on créera dans UtilisateurManager
-		// Utilisateur utilisateur = utilisateurManager.ajouter();
+		//Utilisateur utilisateur = utilisateurManager.ajouter();
 		
 		doGet(request, response);
 	}
