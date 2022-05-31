@@ -32,6 +32,7 @@ public class Retrait {
 	public Retrait() {
 	}
 
+	// instanciation d'un objet retrait avec les paramètres d'adresse ( rue cp ville)
 	public Retrait(String rue, int code_postal, String ville) {
 		this.rue = rue;
 		this.code_postal = code_postal;
