@@ -8,6 +8,7 @@
 <title>Profil</title>
 </head>
 <body>
+
 	<% Utilisateur user = (Utilisateur)session.getAttribute("user"); %>
 		<h1>Profil de <%= user.getPseudo()  %></h1>
 		

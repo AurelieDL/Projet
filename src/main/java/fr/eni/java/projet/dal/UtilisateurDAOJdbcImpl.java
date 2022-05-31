@@ -59,9 +59,13 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try {
 			cnx = ConnectionProvider.getConnection();
 			System.out.println("connected");
+			
 			PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM UTILISATEURS WHERE nom = ?");
+			
 			stmt.setString(1, name);
+			
 			ResultSet rs = stmt.executeQuery();
+			
 			if (rs.next()) {
 				user = new Utilisateur();
 				user.setNoUtilisateur(rs.getInt(1));
@@ -118,6 +122,8 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				user.setMotDePasse(rs.getString(10));
 				user.setCredit(rs.getInt(11));
 				user.setAdministrateur(rs.getBoolean(12));
+				
+				
 			}
 			
 		}catch(Exception e)
