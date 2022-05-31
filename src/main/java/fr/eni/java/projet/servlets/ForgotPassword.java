@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.java.projet.bll.LoginManager;
+import fr.eni.java.projet.bll.UtilisateurManager;
 import fr.eni.java.projet.bo.Utilisateur;
 
 
@@ -29,8 +29,8 @@ public class ForgotPassword extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("mail");
-		LoginManager loginManager= new LoginManager();
-		Utilisateur user2 = loginManager.Recuperer(email);
+		UtilisateurManager utilisateurManager= new UtilisateurManager();
+		Utilisateur user2 = utilisateurManager.Recuperer(email);
 		request.setAttribute("user", user2);
 		RequestDispatcher rd = request.getRequestDispatcher("pages/emailSent.jsp");
 		rd.forward(request, response);

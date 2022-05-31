@@ -1,7 +1,6 @@
 package fr.eni.java.projet.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +24,6 @@ public class ServletMajProfil extends HttpServlet {
 	
 	private Utilisateur getUtilisateurConnecte() {
 		// Pour l'instant on utilise un utilisateur en dur
-		// todo: gestion de l'utilisateur connecté
 		return utilisateurDAO.selectById(UTILISATEUR_ACTUEL_ID);	
 	}
 
@@ -62,5 +60,4 @@ public class ServletMajProfil extends HttpServlet {
 
         utilisateurDAO.update(utilisateur);
 	}
-
 }

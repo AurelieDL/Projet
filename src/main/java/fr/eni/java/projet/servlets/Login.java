@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import fr.eni.java.projet.bll.LoginManager;
+import fr.eni.java.projet.bll.UtilisateurManager;
 import fr.eni.java.projet.bo.Utilisateur;
 
 /**
@@ -34,8 +34,8 @@ public class Login extends HttpServlet {
 		
 				username= request.getParameter("username");
 				password= request.getParameter("password");
-				LoginManager loginManager = new LoginManager();
-				Utilisateur user = loginManager.Connecter(username, password);
+				UtilisateurManager utilisateurManager = new UtilisateurManager();
+				Utilisateur user = utilisateurManager.Connecter(username, password);
 				request.setAttribute("Utilisateur", user );
 				RequestDispatcher rd = request.getRequestDispatcher("pages/profil.jsp");
 				rd.forward(request, response);

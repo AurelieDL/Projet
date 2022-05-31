@@ -5,11 +5,11 @@ import fr.eni.java.projet.dal.DAOFactory;
 import fr.eni.java.projet.dal.UtilisateurDAO;
 import fr.eni.java.projet.exceptions.LoginException;
 
-public class LoginManager {
+public class UtilisateurManager {
 
 	private UtilisateurDAO utilisateurDAO;
 	
-	public LoginManager()
+	public UtilisateurManager()
 	{
 		this.utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	}
@@ -17,10 +17,7 @@ public class LoginManager {
 	
 	public Utilisateur Connecter(String username, String password)
 	{
-		return this.utilisateurDAO.selectByName(username);
-		
-		
-		
+		return this.utilisateurDAO.selectByName(username);	
 		
 	}
 	public boolean checkUser(String username)
@@ -32,4 +29,6 @@ public class LoginManager {
 	{
 		return this.utilisateurDAO.selectByEmail(mail);
 	}
+	
+	
 }
