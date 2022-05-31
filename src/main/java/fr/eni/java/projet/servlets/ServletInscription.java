@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.java.projet.bll.LoginManager;
+import fr.eni.java.projet.bll.UtilisateurManager;
 import fr.eni.java.projet.bo.Utilisateur;
 
 /**
@@ -46,8 +46,8 @@ public class ServletInscription extends HttpServlet {
 		Utilisateur utilisateurCréé = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 		
 		// Puis instancier UtilisateurManager (ici une ancienne version)
-		LoginManager loginManager = new LoginManager();
-		Utilisateur user = loginManager.Créer(utilisateurCréé);
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
+		Utilisateur user = utilisateurManager.Créer(utilisateurCréé);
 		System.out.println(user.toString());
 		//On récupère la session avec tous les reneignements du profil, donc pas besoin de se connecter après
 		session.setAttribute("Utilisateur", user );

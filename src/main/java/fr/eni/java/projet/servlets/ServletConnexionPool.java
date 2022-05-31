@@ -23,7 +23,7 @@ public class ServletConnexionPool extends HttpServlet{
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("je suis dans le DoGET");
 		PrintWriter out = response.getWriter();
 		try {
 			Context context = new InitialContext();

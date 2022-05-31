@@ -8,12 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
-<% if (user == null) { %>
-<jsp:forward page="Login"></jsp:forward>
-	<% } %>
-	<h1>Bienvenue <%= user.getPseudo().toUpperCase() %></h1>
-		<a href="Login"><input type="button" value= "Se connecter"></a>
+
+	<% Utilisateur user = (Utilisateur) session.getAttribute("user"); %>
+	
+	<% if (user == null)
+		{
+	%>		
+			<h1>Vous n'etes pas connecte</h1>
+			<a href="Login"><input type="button" value= "Se connecter"></a>
+		
+	<%	}else
+		{
+		%>
+	
+			<h1>Bienvenue <%= user.getPseudo() %></h1>
+			<a href="Disconnect"><input type="button" value= "Se deconnecter"></a>
+	<%	} %>
+
 		<a href="ServletInscription"><input type="button" value= "S'inscrire"></a>
 </body>
 </html>

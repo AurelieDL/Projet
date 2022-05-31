@@ -8,7 +8,11 @@
 <title>Profil</title>
 </head>
 <body>
-	<% Utilisateur user = (Utilisateur)request.getAttribute("Utilisateur"); %>
+	<% Utilisateur user = (Utilisateur)session.getAttribute("user"); %>
 		<h1>Profil de <%= user.getPseudo()  %></h1>
+		
+		<div>
+		<a href="Disconnect"><input type="submit" value = "Déconnexion" ></a>
+		</div>
 </body>
 </html>

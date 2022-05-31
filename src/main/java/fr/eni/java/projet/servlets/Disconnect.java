@@ -8,33 +8,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import fr.eni.java.projet.bll.UtilisateurManager;
-import fr.eni.java.projet.bo.Utilisateur;
-
-
-@WebServlet("/ForgotPassword")
-public class ForgotPassword extends HttpServlet {
+/**
+ * Servlet implementation class Disconnect
+ */
+@WebServlet("/Disconnect")
+public class Disconnect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-    public ForgotPassword() {
-        super();
-    }
-
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("pages/oubliMdp.jsp");
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("user", null);
+		
+		//page d'accueuil en mode déconnecté
+		RequestDispatcher rd  = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("mail");
-		UtilisateurManager loginManager= new UtilisateurManager();
-		Utilisateur user2 = loginManager.Recuperer(email);
-		request.setAttribute("user", user2);
-		RequestDispatcher rd = request.getRequestDispatcher("pages/emailSent.jsp");
-		rd.forward(request, response);
 		
+		doGet(request, response);
 	}
 
 }
