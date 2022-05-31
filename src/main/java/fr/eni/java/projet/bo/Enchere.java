@@ -2,10 +2,13 @@ package fr.eni.java.projet.bo;
 
 import java.util.Date;
 
-public class Enchère {
+public class Enchere {
 
 	private Date dateEnchère;
 	private int montant_enchere;
+	//Associations
+	private int noUtilisateur;
+	private int noArticle;
 
 	public Date getDateEnchère() {
 		return dateEnchère;
@@ -23,11 +26,11 @@ public class Enchère {
 		this.montant_enchere = montant_enchere;
 	}
 
-	public Enchère() {
+	public Enchere() {
 		super();
 	}
 
-	public Enchère(Date dateEnchère, int montant_enchere) {
+	public Enchere(Date dateEnchère, int montant_enchere) {
 		super();
 		this.dateEnchère = dateEnchère;
 		this.montant_enchere = montant_enchere;
