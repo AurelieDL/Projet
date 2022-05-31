@@ -1,6 +1,5 @@
 package fr.eni.java.projet.dal;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,11 +47,6 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 		}
 	}
-
-	
-	// Eventuellement plus tard on pourrait faire
-	// public void insertAdmin(Utilisateur utilisateur) {}
-	// C'est pas demandé parce qu'on crée les administrateurs directement sous SQL je crois
 
 	public Utilisateur selectById(int noUtilisateur) {
 		return null;

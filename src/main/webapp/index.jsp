@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<% Utilisateur user = (Utilisateur) session.getAttribute("user"); %>
+	<% Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
 	
 	<% if (user == null)
 		{
