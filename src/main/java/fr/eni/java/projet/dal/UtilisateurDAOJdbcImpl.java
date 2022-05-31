@@ -102,7 +102,7 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try
 		{
 			cnx= ConnectionProvider.getConnection();
-			System.out.println("connected");
+			System.out.println("connecté");
 			PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM UTILISATEURS WHERE email = ?");
 			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();

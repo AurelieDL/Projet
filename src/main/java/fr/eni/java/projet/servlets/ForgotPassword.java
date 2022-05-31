@@ -29,8 +29,10 @@ public class ForgotPassword extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("mail");
-		UtilisateurManager loginManager= new UtilisateurManager();
-		Utilisateur user2 = loginManager.Recuperer(email);
+    
+		UtilisateurManager utilisateurManager= new UtilisateurManager();
+		Utilisateur user2 = utilisateurManager.Recuperer(email);
+
 		request.setAttribute("user", user2);
 		RequestDispatcher rd = request.getRequestDispatcher("pages/emailSent.jsp");
 		rd.forward(request, response);
