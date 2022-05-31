@@ -10,8 +10,42 @@ import fr.eni.java.projet.bo.Utilisateur;
 
 class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
+	
 	public void insert(Utilisateur utilisateur) {
-
+		Connection cnx = null;
+		
+		try {
+			//Connection à la BDD
+			cnx = ConnectionProvider.getConnection();
+			System.out.println("connecté");
+			//Demande (query) en langage SQL de ce qu'on veut lui faire faire
+			String query = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement stmt = cnx.prepareStatement(query);
+			//Insertion des valeurs appropriées dans UtilisateurDAOJdbcImpl
+			stmt.setString(1, utilisateur.getPseudo());
+			stmt.setString(2, utilisateur.getNom());
+			stmt.setString(3, utilisateur.getPrenom());
+			stmt.setString(4, utilisateur.getEmail());
+			stmt.setString(5, utilisateur.getTelephone());
+			stmt.setString(6, utilisateur.getRue());
+			stmt.setString(7, utilisateur.getCodePostal());
+			stmt.setString(8, utilisateur.getVille());
+			stmt.setString(9, utilisateur.getMotDePasse());	
+			stmt.setInt(10, 0);
+			stmt.setBoolean(11, false);
+			//Envoi de la demande
+			
+			int ret = stmt.executeUpdate();
+			System.out.println("Retour SQL: nombre de lignes créées = " + ret);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cnx.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public Utilisateur selectById(int noUtilisateur) {
@@ -110,4 +144,5 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void delete(Utilisateur utilisateur) {
 
 	}
+
 }

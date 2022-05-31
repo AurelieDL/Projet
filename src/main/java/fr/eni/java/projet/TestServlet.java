@@ -1,4 +1,4 @@
-package fr.eni.java.projet.bll;
+package fr.eni.java.projet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet2
+ * Servlet implementation class TestServlet
  */
-@WebServlet("/Servlet2")
-public class Servlet2 extends HttpServlet {
+@WebServlet("/TestServlet")
+public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet2() {
+    public TestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

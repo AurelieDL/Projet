@@ -1,5 +1,7 @@
 package fr.eni.java.projet.bo;
 
+import java.util.List;
+
 public class Utilisateur {
 //déclaration variables:
 	private int noUtilisateur;
@@ -14,6 +16,8 @@ public class Utilisateur {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
+	//private List<ArticleVendu> articlesVendus;
+	//private List<ArticleVendu> articlesAchetes;
 
 //Getters&setters:
 	public int getNoUtilisateur() {
@@ -111,7 +115,7 @@ public class Utilisateur {
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
-	
+
 // constructeur sans paramètres:
 	public Utilisateur() {
 	}
@@ -133,7 +137,7 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
-//constructeur avec tout ce que l'utilisateur entre réellement (je sais pas si ça peut servir)
+//constructeur avec tout ce que l'utilisateur entre réellement (utilisé pour l'inscription)
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse) {
 		this.pseudo = pseudo;
@@ -149,10 +153,8 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
-				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
-				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
-				+ ", administrateur=" + administrateur + "]";
-	}
+		return "Utilisateur [pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email
+				+ ", telephone=" + telephone + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville +", motDePasse=" + motDePasse + "]";
 
+	}
 }

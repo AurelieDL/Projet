@@ -4,11 +4,12 @@ import java.util.Date;
 
 public class Enchere {
 
-	private int noUtilisateur;
-	private int noArticle;
-	
+
 	private Date dateEnchère;
 	private int montant_enchere;
+	//Associations
+	private int noUtilisateur;
+	private int noArticle;
 
 	public Date getDateEnchère() {
 		return dateEnchère;
@@ -38,7 +39,9 @@ public class Enchere {
 
 	@Override
 	public String toString() {
+
 		return "Enchere [dateEnchère=" + dateEnchère + ", montant_enchere=" + montant_enchere + ", getDateEnchère()="
+
 				+ getDateEnchère() + ", getMontant_enchere()=" + getMontant_enchere() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
