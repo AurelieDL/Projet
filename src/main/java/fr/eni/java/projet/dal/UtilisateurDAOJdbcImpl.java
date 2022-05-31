@@ -10,59 +10,90 @@ import java.util.List;
 
 import fr.eni.java.projet.bo.Utilisateur;
 
-public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
-	private static final String UPDATE = "UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
+class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
+
 	
-	@Override
 	public void insert(Utilisateur utilisateur) {
-
-	}
-	
-	
-
-	private static final String SELECT = "SELECT * FROM utilisateurs WHERE no_utilisateur=";
-	
-	@Override
-	public Utilisateur selectById(int noUtilisateur) {
-		
-		
-		String query = this.SELECT + String.valueOf(noUtilisateur);
+		Connection cnx = null;
 		
 		try {
-			Statement statement = getConnection().createStatement();
-			ResultSet rs = statement.executeQuery(query);
+			//Connection à la BDD
+			cnx = ConnectionProvider.getConnection();
+			System.out.println("connecté");
+			//Demande (query) en langage SQL de ce qu'on veut lui faire faire
+			String query = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement stmt = cnx.prepareStatement(query);
+			//Insertion des valeurs appropriées dans UtilisateurDAOJdbcImpl
+			stmt.setString(1, utilisateur.getPseudo());
+			stmt.setString(2, utilisateur.getNom());
+			stmt.setString(3, utilisateur.getPrenom());
+			stmt.setString(4, utilisateur.getEmail());
+			stmt.setString(5, utilisateur.getTelephone());
+			stmt.setString(6, utilisateur.getRue());
+			stmt.setString(7, utilisateur.getCodePostal());
+			stmt.setString(8, utilisateur.getVille());
+			stmt.setString(9, utilisateur.getMotDePasse());	
+			stmt.setInt(10, 0);
+			stmt.setBoolean(11, false);
+			//Envoi de la demande
+			
+			int ret = stmt.executeUpdate();
+			System.out.println("Retour SQL: nombre de lignes créées = " + ret);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cnx.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public Utilisateur selectById(int noUtilisateur) {
+		return null;
+	}
+
+	public Utilisateur selectByName(String name) {
+		Utilisateur user = null;
+		Connection cnx = null;
+
+		try {
+			cnx = ConnectionProvider.getConnection();
+			System.out.println("connected");
+			
+			PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM UTILISATEURS WHERE nom = ?");
+			
+			stmt.setString(1, name);
+			
+			ResultSet rs = stmt.executeQuery();
 			
 			if (rs.next()) {
-
-				Utilisateur utilisateur = new Utilisateur(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getString(6),
-						rs.getString(7),
-						rs.getString(8),
-						rs.getString(9),
-						rs.getString(10),
-						rs.getInt(11),
-						rs.getBoolean(12)
-						);
-
-				return utilisateur;
-
+				user = new Utilisateur();
+				user.setNoUtilisateur(rs.getInt(1));
+				user.setPseudo(rs.getString(2));
+				user.setNom(rs.getString(3));
+				user.setPrenom(rs.getString(4));
+				user.setEmail(rs.getString(5));
+				user.setTelephone(rs.getString(6));
+				user.setRue(rs.getString(7));
+				user.setCodePostal(rs.getString(8));
+				user.setVille(rs.getString(9));
+				user.setMotDePasse(rs.getString(10));
+				user.setCredit(rs.getInt(11));
+				user.setAdministrateur(rs.getBoolean(12));
 			}
-			
-			return new Utilisateur();
-			
-				
-		} catch (SQLException e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+		} finally {
+			try {
+				cnx.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		
-		
+		return user;
 	}
 
 	public Utilisateur selectByEmail(String email)
@@ -93,6 +124,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				user.setMotDePasse(rs.getString(10));
 				user.setCredit(rs.getInt(11));
 				user.setAdministrateur(rs.getBoolean(12));
+				
+				
 			}
 			
 		}catch(Exception e)
@@ -102,13 +135,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return user;
 	}
 
-	
-	@Override
 	public List<Utilisateur> selectAll() {
 		return null;
 	}
 
-	@Override
 	public void update(Utilisateur utilisateur) {
 		
 		try
@@ -142,20 +172,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	}
 
-	@Override
 	public void delete(Utilisateur utilisateur) {
-	}
-	
-	
-	private Connection getConnection() {
-
-		try {
-			return ConnectionProvider.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 }

@@ -13,7 +13,7 @@
 <header>ENI-Enchères</header>
 <body>
     <h1>Inscription</h1>
-    <form action="ServletInscriptionUtilisateur" method ="post">
+    <form action="ServletInscription" method ="post">
 	    <div>
 	        <label for="pseudo">Pseudo :</label>
 	        <input type="text" id="pseudo" name="pseudo">
@@ -32,7 +32,7 @@
 	    </div>
 	    <div>
 	        <label for="tel">Téléphone :</label>
-	        <input type="text" id="tel" name="tel">
+	        <input type="text" id="tel" name="telephone">
 	    </div>
 	    <div>
 	        <label for="rue">Rue :</label>
@@ -40,7 +40,7 @@
 	    </div>
 	    <div>
 	        <label for="cp">Code postal :</label>
-	        <input type="text" id="cp" name="cp">
+	        <input type="text" id="cp" name="codePostal">
 	    </div>
 	    <div>
 	        <label for="ville">Ville :</label>
@@ -48,7 +48,7 @@
 	    </div>
     	<div>
 	        <label for="mdp">Mot de passe :</label>
-	        <input type="text" id="mdp" name="mdp">
+	        <input type="text" id="mdp" name="motDePasse">
 	    </div>
 	    <div>
 	        <label for="conf">Confirmation :</label>
