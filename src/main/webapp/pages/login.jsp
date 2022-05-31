@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Se connecter</title>
 </head>
 <body>
 	<h1>Login page</h1>
