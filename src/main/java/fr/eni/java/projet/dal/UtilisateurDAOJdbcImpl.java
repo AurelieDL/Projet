@@ -110,15 +110,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public void update(Utilisateur utilisateur) {
-		try (Connection conn = DriverManager.getConnection(
-                "jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE", "utilisateurBDD", "Pa$$w0rd");
-             PreparedStatement preparedStatement = conn.prepareStatement(UPDATE))
+		
+		try
 		{
 
-
-
-			PreparedStatement ps = conn.prepareStatement(UPDATE);
-
+			Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE", "utilisateurBDD", "Pa$$w0rd");
+	             
+			PreparedStatement ps = conn.prepareStatement("UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?");
+			//construction de la requête
 			ps.setString(1, utilisateur.getPseudo());
 			ps.setString(2, utilisateur.getNom());
 			ps.setString(3, utilisateur.getPrenom());
@@ -130,7 +129,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			ps.setString(9, utilisateur.getMotDePasse());
 			ps.setInt(10, utilisateur.getNoUtilisateur());
 
-			ps.executeUpdate();
+			ps.executeUpdate(); //execution du script SQL
 			ps.close();
 
 			System.out.println(
@@ -145,7 +144,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	@Override
 	public void delete(Utilisateur utilisateur) {
-
 	}
 	
 	
