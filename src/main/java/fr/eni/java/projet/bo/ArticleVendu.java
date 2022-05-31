@@ -3,6 +3,7 @@ package fr.eni.java.projet.bo;
 import java.util.Date;
 
 public class ArticleVendu {
+	
 	private int noArticle;
 	private String nomArticle;
 	private String description;
@@ -11,7 +12,10 @@ public class ArticleVendu {
 	private double miseAPrix;
 	private int prixVente;
 	private int etatVente;
-	
+	private Retrait retrait;
+	private int noCategorie;
+	private int noUtilisateur;
+
 	
 	public int getNoArticle() {
 		return this.noArticle;
@@ -61,10 +65,54 @@ public class ArticleVendu {
 	public void setEtatVente(int etatVente) {
 		this.etatVente = etatVente;
 	}
-	public ArticleVendu() {
+	
+	public Retrait getRetrait() {
+		return retrait;
 	}
+	
+	public void setRetrait(Retrait retrait) {
+		this.retrait = retrait;
+	}
+	
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+	
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
+	
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+	
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+	public ArticleVendu() {
+	
+	}
+	
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			double miseAPrix, int prixVente, int etatVente, Retrait retrait, int noCategorie, int noUtilisateur) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.retrait = retrait;
+		this.noCategorie = noCategorie;
+		this.noUtilisateur = noUtilisateur;
+	}
+	
+	// instanciation d'un objet ArticleVendu avc TOUS les paramètres ( objet Retrait compris)
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, double miseAPrix, int prixVente, int etatVente) {
+			Date dateFinEncheres, double miseAPrix, int prixVente, int etatVente, Retrait retrait, int noCategorie,
+			int noUtilisateur) {
+		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -73,16 +121,9 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
-	}
-	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			double miseAPrix, int prixVente, int etatVente) {
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
+		this.retrait = retrait;
+		this.noCategorie = noCategorie;
+		this.noUtilisateur = noUtilisateur;
 	}
 	@Override
 	public String toString() {

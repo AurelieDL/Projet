@@ -8,33 +8,26 @@ import fr.eni.java.projet.exceptions.LoginException;
 public class UtilisateurManager {
 
 	private UtilisateurDAO utilisateurDAO;
-	
-	public UtilisateurManager()
-	{
+
+	public UtilisateurManager() {
 		this.utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	}
-	
-	
-	public Utilisateur Connecter(String username, String password)
-	{
+
+	public Utilisateur Connecter(String username, String password) {
+
 		return this.utilisateurDAO.selectByName(username);
-		
-		
-		
-		
+
 	}
-	public boolean checkUser(String username)
-	{
+
+	public boolean checkUser(String username) {
 		return true;
 	}
-	
-	public Utilisateur Recuperer(String mail) 
-	{
+
+	public Utilisateur Recuperer(String mail) {
 		return this.utilisateurDAO.selectByEmail(mail);
 	}
-	
-	public Utilisateur ajouter(Utilisateur utilisateur)
-	{
+
+	public Utilisateur ajouter(Utilisateur utilisateur) {
 		// a remplir
 		return null;
 	}

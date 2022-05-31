@@ -2,8 +2,11 @@ package fr.eni.java.projet.bo;
 
 import java.util.Date;
 
-public class Enchère {
+public class Enchere {
 
+	private int noUtilisateur;
+	private int noArticle;
+	
 	private Date dateEnchère;
 	private int montant_enchere;
 
@@ -23,11 +26,11 @@ public class Enchère {
 		this.montant_enchere = montant_enchere;
 	}
 
-	public Enchère() {
+	public Enchere() {
 		super();
 	}
 
-	public Enchère(Date dateEnchère, int montant_enchere) {
+	public Enchere(Date dateEnchère, int montant_enchere) {
 		super();
 		this.dateEnchère = dateEnchère;
 		this.montant_enchere = montant_enchere;
@@ -35,7 +38,7 @@ public class Enchère {
 
 	@Override
 	public String toString() {
-		return "Enchère [dateEnchère=" + dateEnchère + ", montant_enchere=" + montant_enchere + ", getDateEnchère()="
+		return "Enchere [dateEnchère=" + dateEnchère + ", montant_enchere=" + montant_enchere + ", getDateEnchère()="
 				+ getDateEnchère() + ", getMontant_enchere()=" + getMontant_enchere() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
