@@ -12,7 +12,6 @@ import fr.eni.java.projet.bo.Utilisateur;
 import fr.eni.java.projet.dal.DAOFactory;
 import fr.eni.java.projet.dal.UtilisateurDAO;
 
-
 @WebServlet("/ServletMajProfil")
 public class ServletMajProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,10 +33,9 @@ public class ServletMajProfil extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		Utilisateur utilisateur = getUtilisateurConnecte();
 		
-        String pseudo = request.getParameter("pseudo");
+		//Déclaration de variables - récupération des infos du formulaire transmises via la requête POST
+        String pseudo = request.getParameter("pseudo");	
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("email");
@@ -46,9 +44,16 @@ public class ServletMajProfil extends HttpServlet {
         String codePostal = request.getParameter("codePostal");
         String ville = request.getParameter("ville");
         String mdp = request.getParameter("mdp");
+        String newMdp = request.getParameter("new-mdp");
+        String confMdp = request.getParameter("conf-mdp");
+        String delete = request.getParameter("submit");
         
-        
-        utilisateur.setPseudo(pseudo);
+            
+        //récupération de l'utilisateur
+      	Utilisateur utilisateur = getUtilisateurConnecte();
+      	
+        //On remplace les variables de l'utilisateur par les infos du formulaire
+        utilisateur.setPseudo(pseudo);       
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
         utilisateur.setEmail(email);
@@ -56,8 +61,32 @@ public class ServletMajProfil extends HttpServlet {
         utilisateur.setRue(rue);
         utilisateur.setCodePostal(codePostal);
         utilisateur.setVille(ville);
-        utilisateur.setMotDePasse(mdp);
-
+       
+        if(!mdp.equals(utilisateur.getMotDePasse())) {
+    		String messageErreur = "Votre mot de passe actuel est incorrect";
+			request.setAttribute("messageErreurMdpIncorrect", messageErreur);
+			request.setAttribute("utilisateur", getUtilisateurConnecte());
+			request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);		
+        }
+     
+    	if(newMdp.equals(confMdp)) {
+    		if (!newMdp.equals(null) &&  newMdp != "") {
+    			utilisateur.setMotDePasse(newMdp);
+    	    }
+    	} else {
+    		String messageErreur = "* la confirmation du mot de passe doit être identique au nouveau mot de passe";
+			request.setAttribute("messageErreurMdp", messageErreur);
+			request.setAttribute("utilisateur", getUtilisateurConnecte());
+			request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);			
+    	}
+        
+  
+        //renvoi l'objet utilisateur dans la fonction UPDATE de DAOjdbcImpl
         utilisateurDAO.update(utilisateur);
+        
+        //Manière "facile" de supprimer le compte je vais voir pour faire quelque chose de plus propre
+        if(delete.equals("supprimer mon compte")) {
+        	utilisateurDAO.delete(getUtilisateurConnecte());
+        }
 	}
 }

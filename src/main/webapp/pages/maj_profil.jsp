@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,6 +94,7 @@
 						name="mdp" class="form-control"
 						placeholder="${utilisateur.motDePasse}"
 						value="${utilisateur.motDePasse}">
+						<p>${messageErreurMdpIncorrect }</p>
 				</div>
 
 				<div class="col auth-pass-inputgroup">
@@ -107,12 +109,13 @@
 					<input
 						type="password" name="conf-mdp" class="form-control" autocomplete="off"
 						value="">
+						<p>${messageErreurMdp}</p>
 				</div>
 			</div>
 			<div style="text-align: center; padding-top: 20px;">
 				<input type="submit" name="submit" class="btn btn-primary"
 					value="Enregistrer" /> 
-					<input type="submit" name="submit"
+					<input type="submit" name="delete"
 					class="btn btn-primary" value="Supprimer mon compte" />
 			</div>
 		</form>
