@@ -215,8 +215,9 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			
 			String query = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
 			PreparedStatement ps = conn.prepareStatement(query);
-
-			ps.executeUpdate(query); // execution du script SQL
+			ps.setInt(1, noUtilisateur);
+			
+			ps.executeUpdate(); // execution du script SQL
 			
 			System.out.println("Suppression ok");
 			ps.close(); // fermeture PreparedStatement

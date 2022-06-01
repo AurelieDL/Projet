@@ -114,11 +114,18 @@
 			</div>
 			<div style="text-align: center; padding-top: 20px;">
 				<input type="submit" name="submit" class="btn btn-primary"
-					value="Enregistrer" /> 
-					<input type="submit" name="delete"
-					class="btn btn-primary" value="Supprimer mon compte" />
+					value="Enregistrer" />
 			</div>
+			
 		</form>
+		<div style="text-align: center; marging-top: 10px">
+		<form action="${pageContext.request.contextPath}/ServletDeleteAccount"
+			method="get">
+			
+		<input type="submit" name="delete" 
+					class="btn btn-primary" value="Supprimer mon compte" />
+		</form>
+		</div>
 	</div>
 </body>
 </html>

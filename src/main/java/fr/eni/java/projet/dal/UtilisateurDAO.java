@@ -20,9 +20,5 @@ public interface UtilisateurDAO {
 
 	public void update(Utilisateur utilisateur);
 
-	public static void delete(int noUtilisateur) {
-		
-		
-	}
-
+	public void delete(int noUtilisateur);
 }

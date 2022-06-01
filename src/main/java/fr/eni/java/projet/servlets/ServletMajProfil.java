@@ -17,7 +17,7 @@ public class ServletMajProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-	private int UTILISATEUR_ACTUEL_ID = 1;
+	private int UTILISATEUR_ACTUEL_ID = 7;
 	
 	UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	
@@ -29,16 +29,22 @@ public class ServletMajProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
 		request.setAttribute("utilisateur", getUtilisateurConnecte());
-		System.out.println(getUtilisateurConnecte().toString());
-        request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);		
-	}
+	//	System.out.println(getUtilisateurConnecte().toString());
+        request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);	
+        
+   
+        String noUtilisateur = request.getParameter("noUtilisateur");		
+
+        }
+	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
 		//HttpSession session = request.getSession();
-		//Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
+		//Utilisateur test = (Utilisateur) session.getAttribute("user");
+
 		Utilisateur utilisateur = getUtilisateurConnecte();
 
 		
