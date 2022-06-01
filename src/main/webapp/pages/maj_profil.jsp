@@ -63,7 +63,7 @@
 					<label class="fw-bold" for="maj-telephone">Téléphone:</label> <input type="text"
 						name="telephone" class="form-control"
 						placeholder="${utilisateur.telephone}"
-						value="${utilisateur.telephone}" required>
+						value="${utilisateur.telephone}" >
 				</div>
 
 				<div class="col">

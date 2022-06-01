@@ -1,7 +1,5 @@
 package fr.eni.java.projet.bo;
 
-import java.util.List;
-
 public class Utilisateur {
 //déclaration variables:
 	private int noUtilisateur;
