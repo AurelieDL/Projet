@@ -40,9 +40,7 @@ public class UtilisateurManager
 		// base de données, par un try catch ou un if je sais pas)
 		// Le pseudo n'accepte que les caractères alpha-numériques (je dirais de
 		// chercher si les caractères se situent entre 0 et 9 ou entre a et z, sûrement
-		// en les traitant comme des arrays avec des crochets là, vous savez
-		// ICI OU DANS DAOJdbcImpl ??? Le crédit initial est de 0 - Fait dans JdbcImpl
-		// pour l'instant
+		// en les traitant comme des arrays avec des crochets là, vous savez)
 		this.utilisateurDAO.insert(utilisateur);
 		return utilisateur;
 
