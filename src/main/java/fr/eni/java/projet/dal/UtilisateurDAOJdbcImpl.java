@@ -1,8 +1,10 @@
 package fr.eni.java.projet.dal;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -102,7 +104,7 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try
 		{
 			cnx= ConnectionProvider.getConnection();
-			System.out.println("connected");
+			System.out.println("connecté");
 			PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM UTILISATEURS WHERE email = ?");
 			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
@@ -138,11 +140,39 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	public void update(Utilisateur utilisateur) {
+		
+		try
+		{
+
+			Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE", "utilisateurBDD", "Pa$$w0rd");
+	             
+			PreparedStatement ps = conn.prepareStatement("UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?");
+			//construction de la requête
+			ps.setString(1, utilisateur.getPseudo());
+			ps.setString(2, utilisateur.getNom());
+			ps.setString(3, utilisateur.getPrenom());
+			ps.setString(4, utilisateur.getEmail());
+			ps.setString(5, utilisateur.getTelephone());
+			ps.setString(6, utilisateur.getRue());
+			ps.setString(7, utilisateur.getCodePostal());
+			ps.setString(8, utilisateur.getVille());
+			ps.setString(9, utilisateur.getMotDePasse());
+			ps.setInt(10, utilisateur.getNoUtilisateur());
+
+			ps.executeUpdate(); //execution du script SQL
+			ps.close();
+
+			System.out.println(
+					"L'utilisateur " + utilisateur.getPseudo() + " a été mis à jour: " + utilisateur.toString());
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 
 	}
 
 	public void delete(Utilisateur utilisateur) {
-
 	}
 
 }
