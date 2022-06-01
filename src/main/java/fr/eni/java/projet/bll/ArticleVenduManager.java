@@ -17,6 +17,10 @@ public class ArticleVenduManager {
 		this.articleVenduDAO = DAOFactory.getArticleVenduDAO();
 	}
 	
+	public ArticleVendu ajouter(ArticleVendu article) {
+		return null;
+	}
+	
 	
 	public List<ArticleVendu> recupererArticlesEncours()
 	{
