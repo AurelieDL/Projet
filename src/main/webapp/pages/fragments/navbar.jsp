@@ -14,8 +14,8 @@
 	%>
 			  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 			    <li><a href="#" class="nav-link px-2 link-secondary">Enchères</a></li>
-			    <li><a href="#" class="nav-link px-2 link-dark">Vendre un article</a></li>
-			    <li><a href="#" class="nav-link px-2 link-dark">Mon profil</a></li>
+			    <li><a href="SellArticle" class="nav-link px-2 link-dark">Vendre un article</a></li>
+			    <li><a href="ServletMajProfil" class="nav-link px-2 link-dark">Mon profil</a></li>
 			  </ul>
 			  <div class="col-md-3 text-end me-3">
 			    <a href="Disconnect"><button type="button" class="btn btn-outline-primary">Se déconnecter</button></a>

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.java.projet.bo.Utilisateur;
 import fr.eni.java.projet.dal.DAOFactory;
@@ -30,13 +31,17 @@ public class ServletMajProfil extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		
 		request.setAttribute("utilisateur", getUtilisateurConnecte());
+		System.out.println(getUtilisateurConnecte().toString());
         request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		//HttpSession session = request.getSession();
+		//Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
 		Utilisateur utilisateur = getUtilisateurConnecte();
 		
         String pseudo = request.getParameter("pseudo");

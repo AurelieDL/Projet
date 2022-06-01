@@ -5,18 +5,18 @@ import java.util.Date;
 public class Enchere {
 
 
-	private Date dateEnchère;
+	private Date dateEnchere;
 	private int montant_enchere;
 	//Associations
 	private int noUtilisateur;
 	private int noArticle;
 
-	public Date getDateEnchère() {
-		return dateEnchère;
+	public Date getDateEnchere() {
+		return dateEnchere;
 	}
 
-	public void setDateEnchère(Date dateEnchère) {
-		this.dateEnchère = dateEnchère;
+	public void setDateEnchere(Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
 	}
 
 	public int getMontant_enchere() {
@@ -27,22 +27,50 @@ public class Enchere {
 		this.montant_enchere = montant_enchere;
 	}
 
+	/**
+	 * @return the noUtilisateur
+	 */
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+
+	/**
+	 * @param noUtilisateur the noUtilisateur to set
+	 */
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	/**
+	 * @return the noArticle
+	 */
+	public int getNoArticle() {
+		return noArticle;
+	}
+
+	/**
+	 * @param noArticle the noArticle to set
+	 */
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
+	}
+
 	public Enchere() {
 		super();
 	}
 
-	public Enchere(Date dateEnchère, int montant_enchere) {
+	public Enchere(Date dateEnchere, int montant_enchere) {
 		super();
-		this.dateEnchère = dateEnchère;
+		this.dateEnchere = dateEnchere;
 		this.montant_enchere = montant_enchere;
 	}
 
 	@Override
 	public String toString() {
 
-		return "Enchere [dateEnchère=" + dateEnchère + ", montant_enchere=" + montant_enchere + ", getDateEnchère()="
+		return "Enchere [dateEnchère=" + dateEnchere + ", montant_enchere=" + montant_enchere + ", getDateEnchère()="
 
-				+ getDateEnchère() + ", getMontant_enchere()=" + getMontant_enchere() + ", getClass()=" + getClass()
+				+ getDateEnchere() + ", getMontant_enchere()=" + getMontant_enchere() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 }

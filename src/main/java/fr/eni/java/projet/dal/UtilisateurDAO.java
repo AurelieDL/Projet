@@ -11,8 +11,10 @@ public interface UtilisateurDAO {
 	public Utilisateur selectById(int noUtilisateur);
 	
 	
-	//public Utilisateur selectByName(String name);
+	public Utilisateur selectByName(String name);
 	
+	public Utilisateur selectByEmail(String mail );
+
 
 	public List<Utilisateur> selectAll();
 
