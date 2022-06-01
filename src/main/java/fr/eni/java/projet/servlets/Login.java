@@ -30,6 +30,7 @@ public class Login extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 				// Recuperation des parametres du formulaire
 				String username= request.getParameter("username");
 				String password= request.getParameter("password");
@@ -43,7 +44,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("user", user);
 				
 				// par la suite il faudra rediriger vers la page d'accueil en mode connecté.
-				RequestDispatcher rd = request.getRequestDispatcher("pages/profil.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("Accueil");
 				rd.forward(request, response);
 				
 	}
