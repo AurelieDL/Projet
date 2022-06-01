@@ -51,7 +51,45 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	public Utilisateur selectById(int noUtilisateur) {
-		return null;
+		Utilisateur user = null;
+		Connection cnx = null;
+
+		try {
+			cnx = ConnectionProvider.getConnection();
+			System.out.println("connected");
+			
+			PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?");
+			
+			stmt.setInt(1, noUtilisateur);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				user = new Utilisateur();
+				user.setNoUtilisateur(rs.getInt(1));
+				user.setPseudo(rs.getString(2));
+				user.setNom(rs.getString(3));
+				user.setPrenom(rs.getString(4));
+				user.setEmail(rs.getString(5));
+				user.setTelephone(rs.getString(6));
+				user.setRue(rs.getString(7));
+				user.setCodePostal(rs.getString(8));
+				user.setVille(rs.getString(9));
+				user.setMotDePasse(rs.getString(10));
+				user.setCredit(rs.getInt(11));
+				user.setAdministrateur(rs.getBoolean(12));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cnx.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return user;
 	}
 
 	public Utilisateur selectByName(String name) {

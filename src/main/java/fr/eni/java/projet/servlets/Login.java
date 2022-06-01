@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("user", user);
 				
 				// par la suite il faudra rediriger vers la page d'accueil en mode connecté.
-				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("Accueil");
 				rd.forward(request, response);
 				
 	}

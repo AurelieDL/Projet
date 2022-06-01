@@ -1,6 +1,7 @@
 package fr.eni.java.projet.servlets;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,10 +32,15 @@ public class SellArticle extends HttpServlet {
 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			//
-			// Recuperation des parametres du formulaire
-			String name= request.getParameter("name");
+			// Recuperation des parametres du formulaire --> ok 
+			int noUtilisateur= Integer.valueOf(request.getParameter("noutilisateur"));
+			String nom= request.getParameter("nom");
 			String description= request.getParameter("description");
-			
+			String categorie= request.getParameter("categorie");
+			//String photo= request.getParameter("photo");
+			String mise= request.getParameter("mise");
+			Date dde= request.getParameter("dde");
+			String dfe= request.getParameter("dfe");
 			String rue = request.getParameter("rue");
 			int cp = Integer.valueOf(request.getParameter("cp"));
 			String ville = request.getParameter("ville");
@@ -43,7 +49,8 @@ public class SellArticle extends HttpServlet {
 			Retrait retrait = new Retrait(rue, cp, ville);
 			
 			// instanciation d'un objet ArticleeVendus avc TOUS les paramètres ( objet Retrait compris)--->OK
-			ArticleVendu articleVendu= new ArticleVendu(name, description, , , , , , retrait, ,  );
+			ArticleVendu articleVendu= new ArticleVendu (nom, description, categorie, dde, dfe, mise, retrait); 
+			
 			// On instancie un manager pour se connecter( avec la fonction Ajouter qu'on a ecrit dans ArticleManager(BLL))
 			ArticleManager articleManager = new ArticleManager();
 			articleManager.ajouter(articleVendu);

@@ -23,7 +23,7 @@ public class Disconnect extends HttpServlet {
 		session.setAttribute("user", null);
 		
 		//page d'accueuil en mode déconnecté
-		RequestDispatcher rd  = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher rd  = request.getRequestDispatcher("Accueil");
 		rd.forward(request, response);
 	}
 
