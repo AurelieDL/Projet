@@ -59,7 +59,7 @@ public class ServletMajProfil extends HttpServlet {
         
             
         //récupération de l'utilisateur
-      	Utilisateur utilisateur = getUtilisateurConnecte();
+      	//Utilisateur utilisateur = getUtilisateurConnecte();
       	
         //On remplace les variables de l'utilisateur par les infos du formulaire
         utilisateur.setPseudo(pseudo);       
