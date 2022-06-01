@@ -16,15 +16,31 @@ class EnchereDAOJdbcImpl implements EnchereDAO {
 		try {
 			cnx = ConnectionProvider.getConnection();
 			System.out.println("connected");
-			PreparedStatement stmt = cnx.prepareStatement("INSERT INTO ENCHERES (no_utilisateur, no_article, date_enchere, montant_enchere) VALUES 	");
+			PreparedStatement stmt = cnx.prepareStatement("INSERT INTO ENCHERES (no_utilisateur, no_article, date_enchere, montant_enchere) VALUES 	(?,?,?,?)");
 			
 			
-			stmt.setString(1, name);
+			stmt.setInt(1, enchere.getNoUtilisateur());
+			stmt.setInt(2, enchere.getNoArticle());
+			stmt.setDate(3,(java.sql.Date) enchere.getDateEnchere());
+			stmt.setInt(4, enchere.getMontant_enchere());
+			
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
+			}
+		
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			try {
+				cnx.close();
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		}
-		
-		
 	}
 
 	@Override

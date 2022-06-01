@@ -1,4 +1,5 @@
-<%@ page import="fr.eni.java.projet.bo.Enchere" %>
+<%@ page import="fr.eni.java.projet.bo.ArticleVendu" %>
+<%@ page import="fr.eni.java.projet.bo.Categorie" %>
 <%@ page import="java.util.List"%>
 <%@ page import = "fr.eni.java.projet.bo.Utilisateur" %>
 
@@ -18,7 +19,8 @@
             
 <jsp:include page="pages/fragments/navbar.jsp"/>
 
-<% List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres"); %>
+<% List<ArticleVendu> articles = (List<ArticleVendu>) request.getAttribute("articles"); %>
+
 
 <section class="py-3 text-center container">
     <div class="row">
@@ -38,9 +40,18 @@
 	    <div class="input-group w-50 mb-3">
 		    <select class="form-select" aria-label="Default select example">
 			  <option selected>Catégories</option>
-			  <option value="1">Informatique</option>
-			  <option value="2">Ameublement</option>
-			  <option value="3">Cuisine</option>
+			  
+		<% List<Categorie> categories = (List<Categorie>) request.getAttribute("categories"); 
+			if(categories != null)
+			{
+				for(Categorie categorie:categories)
+				{
+		%>
+					<option value=" <%= categorie.getNoCategorie() %>" > <%= categorie.getLibelle() %></option>
+		<%
+				}
+			}
+		%>
 			</select>
 		</div>
 	</div>
@@ -48,27 +59,25 @@
 
 <main>
 	<div class="album py-5 bg-light">
-	    <div class="container">
-
-	
-	      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-3">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-3">
 	      
-	      <% if (encheres != null) 
+	      <% if (articles != null) 
 	       {
 	       
-	       		for(Enchere enchere: encheres)
+	       		for(ArticleVendu article: articles)
 	       		{
 	      %>
 				        <div class="col">
 				          <div class="card shadow-sm">
 				            <img src="https://www.futura-sciences.com/tech/comparatifs/wp-content/uploads/2019/11/meilleur-pc-gamer.jpg" height="200" alt="PC GAMER">
 				            <div class="card-body">
-				            <h5 class="card-title">PC Gamer pour travailler</h5>
-				              <p class="card-text">Prix : 210 points</p>
-				              <p class="card-text">Fin de l'enchère : 10/06/2022</p>
+				            <h5 class="card-title"> <%= article.getNomArticle() %></h5>
+				              <p class="card-text">Prix : <%= article.getMiseAPrix() %> points</p>
+				              <p class="card-text">Fin de l'enchère : <%= article.getDateFinEncheres() %></p>
 				              <p class="card-text">Vendeur : Jean Neymar</p>
 				              <div class="d-flex justify-content-between align-items-center">
-				                <small class="text-muted">9 mins</small>
+				                <small class="text-muted"><%= article.getDateDebutEncheres() %></small>
 				                <div class="btn-group">
 				                  <button type="button" class="btn btn-sm btn-outline-success">Enchérir</button>
 				                </div>         
@@ -79,122 +88,13 @@
 	     <% 	}
 	       	}
 	     %>  
-	  	  <div class="col">
-	          <div class="card shadow-sm">
-	            <img src="https://www.futura-sciences.com/tech/comparatifs/wp-content/uploads/2019/11/meilleur-pc-gamer.jpg" height="200" alt="PC GAMER">
-	            <div class="card-body">
-	            <h5 class="card-title">PC Gamer pour travailler</h5>
-	              <p class="card-text">Prix : 210 points</p>
-	              <p class="card-text">Fin de l'enchère : 10/06/2022</p>
-	              <p class="card-text">Vendeur : Jean Neymar</p>
-	              <div class="d-flex justify-content-between align-items-center">
-	                <small class="text-muted">9 mins</small>
-	                <div class="btn-group">
-	                  <button type="button" class="btn btn-sm btn-outline-success">Enchérir</button>
-	                </div>         
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	        
-			<div class="col">
-	          <div class="card shadow-sm">
-	            <img src="https://www.futura-sciences.com/tech/comparatifs/wp-content/uploads/2019/11/meilleur-pc-gamer.jpg" height="200" alt="PC GAMER">
-	            <div class="card-body">
-	            <h5 class="card-title">PC Gamer pour travailler</h5>
-	              <p class="card-text">Prix : 210 points</p>
-	              <p class="card-text">Fin de l'enchère : 10/06/2022</p>
-	              <p class="card-text">Vendeur : Jean Neymar</p>
-	              <div class="d-flex justify-content-between align-items-center">
-	                <small class="text-muted">9 mins</small>
-	                <div class="btn-group">
-	                  <button type="button" class="btn btn-sm btn-outline-success">Enchérir</button>
-	                </div>         
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	
-			<div class="col">
-	          <div class="card shadow-sm">
-	            <img src="https://www.futura-sciences.com/tech/comparatifs/wp-content/uploads/2019/11/meilleur-pc-gamer.jpg" height="200" alt="PC GAMER">
-	            <div class="card-body">
-	            <h5 class="card-title">PC Gamer pour travailler</h5>
-	              <p class="card-text">Prix : 210 points</p>
-	              <p class="card-text">Fin de l'enchère : 10/06/2022</p>
-	              <p class="card-text">Vendeur : Jean Neymar</p>
-	              <div class="d-flex justify-content-between align-items-center">
-	                <small class="text-muted">9 mins</small>
-	                <div class="btn-group">
-	                  <button type="button" class="btn btn-sm btn-outline-success">Enchérir</button>
-	                </div>         
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	        
-			<div class="col">
-	          <div class="card shadow-sm">
-	            <img src="https://www.futura-sciences.com/tech/comparatifs/wp-content/uploads/2019/11/meilleur-pc-gamer.jpg" height="200" alt="PC GAMER">
-	            <div class="card-body">
-	            <h5 class="card-title">PC Gamer pour travailler</h5>
-	              <p class="card-text">Prix : 210 points</p>
-	              <p class="card-text">Fin de l'enchère : 10/06/2022</p>
-	              <p class="card-text">Vendeur : Jean Neymar</p>
-	              <div class="d-flex justify-content-between align-items-center">
-	                <small class="text-muted">9 mins</small>
-	                <div class="btn-group">
-	                  <button type="button" class="btn btn-sm btn-outline-success">Enchérir</button>
-	                </div>         
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-					        
-			<div class="col">
-	          <div class="card shadow-sm">
-	            <img src="https://www.futura-sciences.com/tech/comparatifs/wp-content/uploads/2019/11/meilleur-pc-gamer.jpg" height="200" alt="PC GAMER">
-	            <div class="card-body">
-	            <h5 class="card-title">PC Gamer pour travailler</h5>
-	              <p class="card-text">Prix : 210 points</p>
-	              <p class="card-text">Fin de l'enchère : 10/06/2022</p>
-	              <p class="card-text">Vendeur : Jean Neymar</p>
-	              <div class="d-flex justify-content-between align-items-center">
-	                <small class="text-muted">9 mins</small>
-	                <div class="btn-group">
-	                  <button type="button" class="btn btn-sm btn-outline-success">Enchérir</button>
-	                </div>         
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	        
-			<div class="col">
-	          <div class="card shadow-sm">
-	            <img src="https://www.futura-sciences.com/tech/comparatifs/wp-content/uploads/2019/11/meilleur-pc-gamer.jpg" height="200" alt="PC GAMER">
-	            <div class="card-body">
-	            <h5 class="card-title">PC Gamer pour travailler</h5>
-	              <p class="card-text">Prix : 210 points</p>
-	              <p class="card-text">Fin de l'enchère : 10/06/2022</p>
-	              <p class="card-text">Vendeur : Jean Neymar</p>
-	              <div class="d-flex justify-content-between align-items-center">
-	                <small class="text-muted">9 mins</small>
-	                <div class="btn-group">
-	                  <button type="button" class="btn btn-sm btn-outline-success">Enchérir</button>
-	                </div>         
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	 	</div>
 	  	  
+	 		</div>
 		</div>	
 	</div>
 </main>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-		<a href="ServletInscription"><input type="button" value= "S'inscrire"></a>
 </body>
 </html>
