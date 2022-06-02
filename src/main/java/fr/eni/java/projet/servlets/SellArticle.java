@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-<<<<<<< HEAD
-import fr.eni.java.projet.bll.ArticleManager;
-=======
->>>>>>> branch 'main' of https://github.com/AurelieDL/Projet.git
+
 import fr.eni.java.projet.bll.ArticleVenduManager;
 import fr.eni.java.projet.bll.UtilisateurManager;
 import fr.eni.java.projet.bo.ArticleVendu;
