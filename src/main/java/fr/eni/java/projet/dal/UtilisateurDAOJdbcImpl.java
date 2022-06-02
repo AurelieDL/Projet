@@ -1,7 +1,6 @@
 package fr.eni.java.projet.dal;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -206,20 +205,19 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			System.out.println(
 					"L'utilisateur " + utilisateur.getPseudo() + " a été mis à jour: " + utilisateur.toString());
-
+			
 		} catch (SQLException e) {
-			// e.printStackTrace();
 			throw new RuntimeException(e);
+			
 		}
-
+			
 	}
 
 	
 	public void delete(int noUtilisateur) {
 		
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE",
-					"utilisateurBDD", "Pa$$w0rd");
+			Connection conn = ConnectionProvider.getConnection();
 			
 			String query = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
 			PreparedStatement ps = conn.prepareStatement(query);
