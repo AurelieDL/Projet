@@ -43,13 +43,16 @@ public class ServletInscription extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		String motDePasse = request.getParameter("motDePasse");
+		// On instancie Utilisateur pour empaqueter tout ça dans un colis pour la BDD
 		Utilisateur utilisateurCréé = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 		
-		// Puis instancier UtilisateurManager (ici une ancienne version)
+		// Puis instancier UtilisateurManager
 		UtilisateurManager utilisateurManager = new UtilisateurManager();
+		// C'est ICI qu'on fait un aller-retour IHM-DAL en passant par la BLL pour livrer le paquet à la BDD
+		// C'est aussi là que le Manager va contrôler pour s'assurer que la saisie respecte bien les critères demandés, puisqu'il est la porte d'entrée du chemin
 		Utilisateur user = utilisateurManager.Créer(utilisateurCréé);
 		System.out.println(user.toString());
-		//On récupère la session avec tous les reneignements du profil, donc pas besoin de se connecter après
+		//On récupère la session avec tous les renseignements du profil, donc pas besoin de se connecter après
 		session.setAttribute("Utilisateur", user );
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);

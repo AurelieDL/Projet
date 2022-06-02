@@ -43,9 +43,8 @@ public class ServletMajProfil extends HttpServlet {
 
 		
 		//HttpSession session = request.getSession();
-		//Utilisateur test = (Utilisateur) session.getAttribute("user");
-
-		Utilisateur utilisateur = getUtilisateurConnecte();
+		//Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
+		//Utilisateur utilisateur = getUtilisateurConnecte();
 
 		
 		//Déclaration de variables - récupération des infos du formulaire transmises via la requête POST
@@ -62,7 +61,7 @@ public class ServletMajProfil extends HttpServlet {
         String confMdp = request.getParameter("conf-mdp");        
             
         //récupération de l'utilisateur
-      	//Utilisateur utilisateur = getUtilisateurConnecte();
+      	Utilisateur utilisateur = getUtilisateurConnecte();
       	
         //On remplace les variables de l'utilisateur par les infos du formulaire
         utilisateur.setPseudo(pseudo);       
