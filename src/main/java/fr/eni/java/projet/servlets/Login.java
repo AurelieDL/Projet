@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
 				// On recupère la session, et on definit un attribut avec le user qu'on a recupere par le manager
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				
+												
 				// par la suite il faudra rediriger vers la page d'accueil en mode connecté.
 				RequestDispatcher rd = request.getRequestDispatcher("Accueil");
 				rd.forward(request, response);

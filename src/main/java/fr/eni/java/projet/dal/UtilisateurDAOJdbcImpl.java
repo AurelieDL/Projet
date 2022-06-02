@@ -127,8 +127,9 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				user.setMotDePasse(rs.getString(10));
 				user.setCredit(rs.getInt(11));
 				user.setAdministrateur(rs.getBoolean(12));
-			}
 
+			}
+			System.out.println(user.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -183,8 +184,7 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 			try {
 
-			Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE",
-					"utilisateurBDD", "Pa$$w0rd");
+			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement ps = conn.prepareStatement(
 					"UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?");

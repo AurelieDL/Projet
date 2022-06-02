@@ -1,6 +1,7 @@
+<%@ page import="fr.eni.java.projet.bo.Utilisateur"  %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <body>
 	<div class="container">
 		<h2 class="mb-5" style="text-align: center">Mon Profil</h2>
-
+<% Utilisateur utilisateur = (Utilisateur)session.getAttribute("user"); %>
 
 		<form class="shadow p-3 mb-5 bg-body rounded" action="${pageContext.request.contextPath}/ServletMajProfil"
 			method="post">
@@ -26,28 +27,28 @@
 				<div class="col">
 					<label class="fw-bold" for="maj-pseudo">Pseudo: </label> <input type="text"
 						name="pseudo" class="form-control"
-						placeholder="${utilisateur.pseudo}" value="${utilisateur.pseudo}"
+						placeholder="${user.pseudo}" value="${user.pseudo}"
 						required>
 				</div>
 
 				<div class="col">
 					<label class="fw-bold" for="maj-email">Email:</label> <input type="text"
 						name="email" class="form-control"
-						placeholder="${utilisateur.email}" value="${utilisateur.email}"
+						placeholder="${user.email}" value="${user.email}"
 						required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
 					<label class="fw-bold" for="maj-nom">Nom:</label> <input type="text" name="nom"
-						class="form-control" placeholder="${utilisateur.nom}"
-						value="${utilisateur.nom}" required>
+						class="form-control" placeholder="${user.nom}"
+						value="${user.nom}" required>
 
 				</div>
 				<div class="col">
 					<label class="fw-bold" for="maj-prenom">Prénom:</label> <input type="text"
 						name="prenom" class="form-control"
-						placeholder="${utilisateur.prenom}" value="${utilisateur.prenom}"
+						placeholder="${user.prenom}" value="${user.prenom}"
 						required>
 				</div>
 			</div>
@@ -56,28 +57,28 @@
 				<div class="col">
 					<label class="fw-bold" for="maj-telephone">Téléphone:</label> <input type="text"
 						name="telephone" class="form-control"
-						placeholder="${utilisateur.telephone}"
-						value="${utilisateur.telephone}" >
+						placeholder="${user.telephone}"
+						value="${user.telephone}" >
 				</div>
 
 				<div class="col">
 					<label class="fw-bold" for="maj-rue">Rue:</label> <input type="text" name="rue"
-						class="form-control" placeholder="${utilisateur.rue}"
-						value="${utilisateur.rue}" required>
+						class="form-control" placeholder="${user.rue}"
+						value="${user.rue}" required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
 					<label class="fw-bold" for="maj-codePostal">Code Postal:</label> <input type="text"
 						name="codePostal" class="form-control"
-						placeholder="${utilisateur.codePostal}"
-						value="${utilisateur.codePostal}" required>
+						placeholder="${user.codePostal}"
+						value="${user.codePostal}" required>
 				</div>
 
 				<div class="col">
 					<label class="fw-bold" for="maj-ville">Ville:</label> <input type="text"
 						name="ville" class="form-control"
-						placeholder="${utilisateur.ville}" value="${utilisateur.ville}"
+						placeholder="${user.ville}" value="${user.ville}"
 						required>
 				</div>
 			</div>
@@ -86,8 +87,8 @@
 					<label class="fw-bold" for="mdp">Mot de passe actuel: </label> 
 					<input type="password"
 						name="mdp" class="form-control"
-						placeholder="${utilisateur.motDePasse}"
-						value="${utilisateur.motDePasse}">
+						placeholder="${user.motDePasse}"
+						value="${user.motDePasse}">
 						<p>${messageErreurMdpIncorrect }</p>
 				</div>
 
