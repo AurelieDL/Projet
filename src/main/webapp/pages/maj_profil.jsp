@@ -13,13 +13,7 @@
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
 
-<header class="header">
-	<nav class="navbar">
-		<div class="container">
-			<a href="#" class="navbar-brand text-uppercase font-weight-bold">ENI-ENCHERES</a>
-		</div>
-	</nav>
-</header>
+<jsp:include page="fragments/navbar.jsp"/>
 <body>
 	<div class="container">
 		<h2 class="mb-5" style="text-align: center">Mon Profil</h2>

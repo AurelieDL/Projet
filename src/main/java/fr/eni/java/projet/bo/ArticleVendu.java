@@ -11,7 +11,6 @@ public class ArticleVendu {
 	private Date dateFinEncheres;
 	private double miseAPrix;
 	private int prixVente;
-	private int etatVente;
 	private Retrait retrait;
 	private int noCategorie;
 	private int noUtilisateur;
@@ -59,12 +58,6 @@ public class ArticleVendu {
 	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;
 	}
-	public int getEtatVente() {
-		return this.etatVente;
-	}
-	public void setEtatVente(int etatVente) {
-		this.etatVente = etatVente;
-	}
 	
 	public Retrait getRetrait() {
 		return retrait;
@@ -94,7 +87,7 @@ public class ArticleVendu {
 	}
 	
 	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			double miseAPrix, int prixVente, int etatVente, Retrait retrait, int noCategorie, int noUtilisateur) {
+			double miseAPrix, int prixVente, Retrait retrait, int noCategorie, int noUtilisateur) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -102,7 +95,6 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.retrait = retrait;
 		this.noCategorie = noCategorie;
 		this.noUtilisateur = noUtilisateur;
@@ -110,7 +102,7 @@ public class ArticleVendu {
 	
 	// instanciation d'un objet ArticleVendu avc TOUS les paramètres ( objet Retrait compris)
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, double miseAPrix, int prixVente, int etatVente, Retrait retrait, int noCategorie,
+			Date dateFinEncheres, double miseAPrix, int prixVente, Retrait retrait, int noCategorie,
 			int noUtilisateur) {
 		super();
 		this.noArticle = noArticle;
@@ -120,7 +112,6 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.retrait = retrait;
 		this.noCategorie = noCategorie;
 		this.noUtilisateur = noUtilisateur;
@@ -130,7 +121,7 @@ public class ArticleVendu {
 		return "Historique de la vente de l'article:%n [noArticle=" + this.noArticle + ", nomArticle=" + this.nomArticle + ", description="
 				+ this.description + ", dateDebutEncheres=" + this.dateDebutEncheres + ", dateFinEncheres="
 				+ this.dateFinEncheres + ", miseAPrix=" + this.miseAPrix + ", prixVente=" + this.prixVente
-				+ ", etatVente=" + this.etatVente + "]";
+				+  "]";
 	}
 	
 	

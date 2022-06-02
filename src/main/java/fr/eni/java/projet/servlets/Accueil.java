@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.java.projet.bll.ArticleManager;
 import fr.eni.java.projet.bll.ArticleVenduManager;
 import fr.eni.java.projet.bo.ArticleVendu;
 import fr.eni.java.projet.bo.Categorie;

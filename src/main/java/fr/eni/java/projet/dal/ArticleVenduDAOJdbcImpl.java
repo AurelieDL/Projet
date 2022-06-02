@@ -72,7 +72,7 @@ class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				
 				
 				articles.add(article);
-				System.out.println(article.toString());
+				//System.out.println(article.toString());
 			}
 		}catch(Exception e)
 		{
@@ -107,7 +107,7 @@ class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				categorie.setNoCategorie(rs.getInt(1));
 				categorie.setLibelle(rs.getString(2));
 				
-				System.out.println(categorie.toString());
+				//System.out.println(categorie.toString());
 				
 				categories.add(categorie);
 			}

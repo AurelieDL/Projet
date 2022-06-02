@@ -5,7 +5,7 @@
 <% Utilisateur user = (Utilisateur)session.getAttribute("user"); %>
     
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-  <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none ms-5">
+  <a href="Accueil" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none ms-5">
    ENI-ENCHERES
   </a>
 
@@ -13,7 +13,7 @@
 		{
 	%>
 			  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-			    <li><a href="#" class="nav-link px-2 link-secondary">Enchères</a></li>
+			    <li><a href="Accueil" class="nav-link px-2 link-secondary">Enchères</a></li>
 			    <li><a href="SellArticle" class="nav-link px-2 link-dark">Vendre un article</a></li>
 			    <li><a href="ServletMajProfil" class="nav-link px-2 link-dark">Mon profil</a></li>
 			  </ul>

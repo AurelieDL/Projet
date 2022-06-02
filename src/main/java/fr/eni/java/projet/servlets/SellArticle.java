@@ -1,7 +1,10 @@
 package fr.eni.java.projet.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.java.projet.bll.ArticleManager;
+import fr.eni.java.projet.bll.ArticleVenduManager;
 import fr.eni.java.projet.bll.UtilisateurManager;
 import fr.eni.java.projet.bo.ArticleVendu;
+import fr.eni.java.projet.bo.Categorie;
 import fr.eni.java.projet.bo.Retrait;
 import fr.eni.java.projet.bo.Utilisateur;
 
@@ -23,7 +28,12 @@ public class SellArticle extends HttpServlet {
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ArticleVenduManager articleVenduManager = new ArticleVenduManager();
+		
+		List<Categorie> categories = articleVenduManager.recupererCategories();
+		
+		request.setAttribute("categories", categories);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/formulaire_vente.jsp");
 		rd.forward(request, response);
 	}
@@ -36,11 +46,23 @@ public class SellArticle extends HttpServlet {
 			int noUtilisateur= Integer.valueOf(request.getParameter("noutilisateur"));
 			String nom= request.getParameter("nom");
 			String description= request.getParameter("description");
-			String categorie= request.getParameter("categorie");
+			int categorie= Integer.valueOf(request.getParameter("categorie"));
 			//String photo= request.getParameter("photo");
-			String mise= request.getParameter("mise");
-			Date dde= request.getParameter("dde");
-			String dfe= request.getParameter("dfe");
+			double mise= Double.valueOf(request.getParameter("mise"));
+			Date dde = null;
+			try {
+				dde = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dde"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Date dfe = null;
+			try {
+				dfe = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dfe"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String rue = request.getParameter("rue");
 			int cp = Integer.valueOf(request.getParameter("cp"));
 			String ville = request.getParameter("ville");
@@ -49,7 +71,7 @@ public class SellArticle extends HttpServlet {
 			Retrait retrait = new Retrait(rue, cp, ville);
 			
 			// instanciation d'un objet ArticleeVendus avc TOUS les paramètres ( objet Retrait compris)--->OK
-			ArticleVendu articleVendu= new ArticleVendu (nom, description, categorie, dde, dfe, mise, retrait); 
+			ArticleVendu articleVendu= new ArticleVendu (nom, description, dde, dfe, mise,0, retrait, categorie, noUtilisateur); 
 			
 			// On instancie un manager pour se connecter( avec la fonction Ajouter qu'on a ecrit dans ArticleManager(BLL))
 			ArticleManager articleManager = new ArticleManager();
