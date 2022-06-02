@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import fr.eni.java.projet.bo.Utilisateur;
 import fr.eni.java.projet.dal.DAOFactory;
@@ -18,7 +17,7 @@ public class ServletMajProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-	private int UTILISATEUR_ACTUEL_ID = 1;
+	private int UTILISATEUR_ACTUEL_ID = 7;
 	
 	UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	
@@ -30,16 +29,22 @@ public class ServletMajProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
 		request.setAttribute("utilisateur", getUtilisateurConnecte());
-		System.out.println(getUtilisateurConnecte().toString());
-        request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);		
-	}
+	//	System.out.println(getUtilisateurConnecte().toString());
+        request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);	
+        
+   
+        String noUtilisateur = request.getParameter("noUtilisateur");		
+
+        }
+	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
 		//HttpSession session = request.getSession();
-		//Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
+		//Utilisateur test = (Utilisateur) session.getAttribute("user");
+
 		Utilisateur utilisateur = getUtilisateurConnecte();
 
 		
@@ -54,12 +59,10 @@ public class ServletMajProfil extends HttpServlet {
         String ville = request.getParameter("ville");
         String mdp = request.getParameter("mdp");
         String newMdp = request.getParameter("new-mdp");
-        String confMdp = request.getParameter("conf-mdp");
-        String delete = request.getParameter("submit");
-        
+        String confMdp = request.getParameter("conf-mdp");        
             
         //récupération de l'utilisateur
-      	Utilisateur utilisateur = getUtilisateurConnecte();
+      	//Utilisateur utilisateur = getUtilisateurConnecte();
       	
         //On remplace les variables de l'utilisateur par les infos du formulaire
         utilisateur.setPseudo(pseudo);       
@@ -94,8 +97,8 @@ public class ServletMajProfil extends HttpServlet {
         utilisateurDAO.update(utilisateur);
         
         //Manière "facile" de supprimer le compte je vais voir pour faire quelque chose de plus propre
-        if(delete.equals("supprimer mon compte")) {
-        	utilisateurDAO.delete(getUtilisateurConnecte());
+      //  if(delete.equals("supprimer mon compte")) {
+        	//utilisateurDAO.delete(getUtilisateurConnecte());
         }
 	}
-}
+

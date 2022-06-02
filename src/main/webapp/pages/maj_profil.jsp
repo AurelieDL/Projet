@@ -63,7 +63,7 @@
 					<label class="fw-bold" for="maj-telephone">Téléphone:</label> <input type="text"
 						name="telephone" class="form-control"
 						placeholder="${utilisateur.telephone}"
-						value="${utilisateur.telephone}" required>
+						value="${utilisateur.telephone}" >
 				</div>
 
 				<div class="col">
@@ -114,11 +114,18 @@
 			</div>
 			<div style="text-align: center; padding-top: 20px;">
 				<input type="submit" name="submit" class="btn btn-primary"
-					value="Enregistrer" /> 
-					<input type="submit" name="delete"
-					class="btn btn-primary" value="Supprimer mon compte" />
+					value="Enregistrer" />
 			</div>
+			
 		</form>
+		<div style="text-align: center; marging-top: 10px">
+		<form action="${pageContext.request.contextPath}/ServletDeleteAccount"
+			method="get">
+			
+		<input type="submit" name="delete" 
+					class="btn btn-primary" value="Supprimer mon compte" />
+		</form>
+		</div>
 	</div>
 </body>
 </html>
