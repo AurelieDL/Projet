@@ -1,4 +1,4 @@
-package fr.eni.java.projet;
+package fr.eni.java.projet.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -40,7 +40,7 @@ public class ServletMajProfil extends HttpServlet {
 		
 		//HttpSession session = request.getSession();
 		//Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
-		Utilisateur utilisateur = getUtilisateurConnecte();
+		//Utilisateur utilisateur = getUtilisateurConnecte();
 
 		
 		//Déclaration de variables - récupération des infos du formulaire transmises via la requête POST

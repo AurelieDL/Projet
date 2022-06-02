@@ -3,6 +3,7 @@ package fr.eni.java.projet.dal;
 import java.util.List;
 
 import fr.eni.java.projet.bo.Utilisateur;
+import fr.eni.java.projet.exceptions.BusinessException;
 
 public interface UtilisateurDAO {
 	
@@ -19,4 +20,6 @@ public interface UtilisateurDAO {
 	public void update(Utilisateur utilisateur);
 
 	public void delete(Utilisateur utilisateur);
+	
+	public boolean checkPseudoUnique(String pseudo) throws BusinessException;
 }
