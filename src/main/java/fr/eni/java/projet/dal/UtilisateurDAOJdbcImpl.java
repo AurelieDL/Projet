@@ -21,9 +21,10 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			cnx = ConnectionProvider.getConnection();
 			System.out.println("connecté");
 			// Demande (query) en langage SQL de ce qu'on veut lui faire faire
-			String query = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-			PreparedStatement pstmt = cnx.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+//			PreparedStatement pstmt = cnx.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement pstmt = cnx.prepareStatement(query);
 			//Insertion des valeurs appropriées dans UtilisateurDAOJdbcImpl
 			pstmt.setString(1, utilisateur.getPseudo());
 			pstmt.setString(2, utilisateur.getNom());
@@ -41,11 +42,10 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			int ret = pstmt.executeUpdate();
 			System.out.println("Retour SQL: nombre de lignes créées = " + ret);
 			// On fait la gymnastique commencée dans le PreparedStatement pour récupérer l'id utilisateur
-			ResultSet rs = pstmt.getGeneratedKeys();
-			if (rs.next()) {
-				utilisateur.setNoUtilisateur(rs.getInt(1));
-			}
-			
+//			ResultSet rs = pstmt.getGeneratedKeys();
+//			if (rs.next()) {
+//				utilisateur.setNoUtilisateur(rs.getInt(1));
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -236,22 +236,24 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		
 	}
-
+/*
 	@Override
-	public boolean checkPseudoUnique(String pseudo) throws BusinessException {
+	public boolean checkPseudoUnique(String pseudo){
 		Connection cnx;
 		try {
 			cnx = ConnectionProvider.getConnection();
 			System.out.println("connecté");
-			String query = "SELECT COUNT(*) FROM UTILISATEURS WHERE pseudo = ?";
+			String query = "SELECT COUNT(*) FROM UTILISATEURS WHERE pseudo = ?;";
 			
 			PreparedStatement pstmt = cnx.prepareStatement(query);
 			pstmt.setString(1, pseudo);
-			int nbpseudo = pstmt.executeUpdate(query);
-			if (nbpseudo != 0) {
+			boolean presence = pstmt.execute();
+			if (presence = true) {
 				//changer le booléen, je ne sais plus comment
+				return true;
 			} else {
 				// Dans le catch peut-être ? Renvoyer un truc du style REGLE_INSCRIPTION_PSEUDO_UNIQUE_ERREUR
+				return false;
 			}
 					
 		} catch (SQLException ex) {
@@ -261,5 +263,5 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 		return false;
 	}
-
+*/
 }
