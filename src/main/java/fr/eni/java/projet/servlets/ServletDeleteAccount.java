@@ -21,26 +21,22 @@ public class ServletDeleteAccount extends HttpServlet {
 	UtilisateurDAO utilisateurDAO = DAOFactory.getUtilisateurDAO();    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//On récupère la session avec l'utilisateur qui stocké dedans( celui qui s'est loggué)
+		//Récuperation de la session avec l'utilisateur qui est connecté
 		HttpSession session = request.getSession();
 		
-		//On récupère l'utilisateur
+		//Récuperation de l'utilisateur
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("user");
 		
-		//On supprime l'utilisateur en se servant de son attribut NoUtilisateur
+		//Suppression de l'utilisateur avec son attribut NoUtilisateur
 		utilisateurDAO.delete(utilisateur.getNoUtilisateur());
 		
-		//On efface l'utilisateur de la session en mettant null (équivaut à une déconnexion)
+		//On efface l'utilisateur de la session en mettant null
 		session.setAttribute("user", null);
 		
-		//On redirige vers la page d'accueuil en mode déconnecté
+		//Redirection vers la page d'accueuil en mode déconnecté
 		RequestDispatcher rd  = request.getRequestDispatcher("Accueil");
 		rd.forward(request, response);
-		
-		
-		
-		//request.getRequestDispatcher("/Projet/index.jsp").forward(request, response);
-
+	
         }
 
 

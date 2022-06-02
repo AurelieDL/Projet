@@ -81,7 +81,6 @@ public class ServletMajProfil extends HttpServlet {
 		} else { // Sinon un message d'erreur s'affiche au niveau du formulaire
 			String messageErreur = "* la confirmation du mot de passe et le nouveau mot de passe doivent être identiques";
 			request.setAttribute("messageErreurMdp", messageErreur);
-
 			request.setAttribute("utilisateur", user.getNoUtilisateur());
 			request.getRequestDispatcher("/pages/maj_profil.jsp").forward(request, response);
 		}

@@ -1,4 +1,3 @@
-<%@ page import="fr.eni.java.projet.bo.Utilisateur"  %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -18,7 +17,6 @@
 <body>
 	<div class="container">
 		<h2 class="mb-5" style="text-align: center">Mon Profil</h2>
-<% Utilisateur utilisateur = (Utilisateur)session.getAttribute("user"); %>
 
 		<form class="shadow p-3 mb-5 bg-body rounded" action="${pageContext.request.contextPath}/ServletMajProfil"
 			method="post">
