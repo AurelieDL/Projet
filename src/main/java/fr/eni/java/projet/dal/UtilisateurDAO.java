@@ -18,6 +18,7 @@ public interface UtilisateurDAO {
 	public List<Utilisateur> selectAll();
 
 	public void update(Utilisateur utilisateur);
+	
 
 	public void delete(int noUtilisateur);
 	
