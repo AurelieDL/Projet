@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.java.projet.bo.Utilisateur;
+import fr.eni.java.projet.exceptions.BusinessException;
 
 class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
@@ -15,28 +16,36 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Connection cnx = null;
 
 		try {
+
 			// Connection à la BDD
 			cnx = ConnectionProvider.getConnection();
 			System.out.println("connecté");
 			// Demande (query) en langage SQL de ce qu'on veut lui faire faire
 			String query = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement stmt = cnx.prepareStatement(query);
-			// Insertion des valeurs appropriées dans UtilisateurDAOJdbcImpl
-			stmt.setString(1, utilisateur.getPseudo());
-			stmt.setString(2, utilisateur.getNom());
-			stmt.setString(3, utilisateur.getPrenom());
-			stmt.setString(4, utilisateur.getEmail());
-			stmt.setString(5, utilisateur.getTelephone());
-			stmt.setString(6, utilisateur.getRue());
-			stmt.setString(7, utilisateur.getCodePostal());
-			stmt.setString(8, utilisateur.getVille());
-			stmt.setString(9, utilisateur.getMotDePasse());
-			stmt.setInt(10, 0);
-			stmt.setBoolean(11, false);
-			// Envoi de la demande
 
-			int ret = stmt.executeUpdate();
+			PreparedStatement pstmt = cnx.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+			//Insertion des valeurs appropriées dans UtilisateurDAOJdbcImpl
+			pstmt.setString(1, utilisateur.getPseudo());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setString(3, utilisateur.getPrenom());
+			pstmt.setString(4, utilisateur.getEmail());
+			pstmt.setString(5, utilisateur.getTelephone());
+			pstmt.setString(6, utilisateur.getRue());
+			pstmt.setString(7, utilisateur.getCodePostal());
+			pstmt.setString(8, utilisateur.getVille());
+			pstmt.setString(9, utilisateur.getMotDePasse());	
+			pstmt.setInt(10, 0);
+			pstmt.setBoolean(11, false);
+			//Envoi de la demande
+			
+			int ret = pstmt.executeUpdate();
 			System.out.println("Retour SQL: nombre de lignes créées = " + ret);
+			// On fait la gymnastique commencée dans le PreparedStatement pour récupérer l'id utilisateur
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				utilisateur.setNoUtilisateur(rs.getInt(1));
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -209,7 +218,6 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void delete(int noUtilisateur) {
 		
 		try {
-
 			Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost;databasename=BDD_PROJETGROUPE",
 					"utilisateurBDD", "Pa$$w0rd");
 			
@@ -228,4 +236,30 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		
 	}
+
+	@Override
+	public boolean checkPseudoUnique(String pseudo) throws BusinessException {
+		Connection cnx;
+		try {
+			cnx = ConnectionProvider.getConnection();
+			System.out.println("connecté");
+			String query = "SELECT COUNT(*) FROM UTILISATEURS WHERE pseudo = ?";
+			
+			PreparedStatement pstmt = cnx.prepareStatement(query);
+			pstmt.setString(1, pseudo);
+			int nbpseudo = pstmt.executeUpdate(query);
+			if (nbpseudo != 0) {
+				//changer le booléen, je ne sais plus comment
+			} else {
+				// Dans le catch peut-être ? Renvoyer un truc du style REGLE_INSCRIPTION_PSEUDO_UNIQUE_ERREUR
+			}
+					
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+		
+		return false;
+	}
+
 }

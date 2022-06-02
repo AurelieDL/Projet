@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
 import fr.eni.java.projet.bll.ArticleManager;
+=======
+>>>>>>> branch 'main' of https://github.com/AurelieDL/Projet.git
 import fr.eni.java.projet.bll.ArticleVenduManager;
 import fr.eni.java.projet.bll.UtilisateurManager;
 import fr.eni.java.projet.bo.ArticleVendu;
@@ -73,9 +76,9 @@ public class SellArticle extends HttpServlet {
 			// instanciation d'un objet ArticleeVendus avc TOUS les paramètres ( objet Retrait compris)--->OK
 			ArticleVendu articleVendu= new ArticleVendu (nom, description, dde, dfe, mise,0, retrait, categorie, noUtilisateur); 
 			
-			// On instancie un manager pour se connecter( avec la fonction Ajouter qu'on a ecrit dans ArticleManager(BLL))
-			ArticleManager articleManager = new ArticleManager();
-			articleManager.ajouter(articleVendu);
+			// On instancie un manager pour se connecter( avec la fonction Ajouter qu'on a ecrit dans ArticleVenduManager(BLL))
+			ArticleVenduManager articleVenduManager = new ArticleVenduManager();
+			articleVenduManager.ajouter(articleVendu);
 			
 			// par la suite il faudra rediriger vers la page d'accueil en mode connecté.
 			RequestDispatcher rd = request.getRequestDispatcher("pages/index.jsp");
