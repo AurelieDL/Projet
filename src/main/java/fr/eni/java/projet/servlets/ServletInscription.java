@@ -34,7 +34,7 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		// D'abord il faut récupérer les données saisies dans le formulaire de la jsp inscription.jsp (à faire)
+		// D'abord il faut récupérer les données saisies dans le formulaire de la jsp inscription.jsp
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");

@@ -98,7 +98,10 @@
 			</div>
 			<div style="text-align: center; padding-top: 20px;">
 				<input type="reset" name="reset" class="btn btn-primary"
-					value="Annuler" />
+					value="Recommencer" />
+			</div>
+			<div style="text-align: center; padding-top: 20px;">
+				<a class="btn btn-primary"  href="<%=request.getContextPath()%>/accueil.html" role="button">Retour</a>
 			</div>
 			
 		</form>
