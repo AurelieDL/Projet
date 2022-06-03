@@ -15,11 +15,14 @@
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
 <body>
-	<!--  On récupère ici, les attributs du doPost quand ça s'est mal passé (exceptions) -->
+	<!--  On récupère ici, les attributs (erreurs, username, password) du doPost quand ça s'est mal passé (exceptions) -->
 	<% List<Integer> erreurs = (List<Integer>) request.getAttribute("erreurs"); %>
+	
 	<% String username = (String) request.getAttribute("username");
+		// si username = null, on met username à vide, pour eviter d'avoir NULL inscirt dans la case de saisie
 		if(username == null) username = ""; %>
 	<% String password = (String) request.getAttribute("password"); 
+		// si password = null, on met password à vide, pour eviter d'avoir NULL inscirt dans la case de saisie
 		if(password == null) password = ""; %>
 	<header class="header">
 		<nav class="navbar">
