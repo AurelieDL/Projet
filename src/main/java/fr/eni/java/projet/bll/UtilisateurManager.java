@@ -53,8 +53,6 @@ public class UtilisateurManager
 /*
 	private void checkPseudoAlphanumerique(String pseudo, BusinessException exception) {
 		// Vérifier que le pseudo n'accepte que les caractères alpha-numériques
-		//	(je dirais de chercher si les caractères se situent entre 0 et 9 ou entre a et z, sûrement
-		// en les traitant comme des arrays avec des crochets là, vous savez)
 		if (pseudo.matches("[a-zA-Z0-9]+")) {
 			}	else	{
 				exception.ajouterErreur(CodesResultatBLL.REGLE_INSCRIPTION_PSEUDO_ALPHANUMERIQUE_ERREUR);
@@ -73,7 +71,6 @@ public class UtilisateurManager
 	
 	private void checkPseudoUnique(String pseudo, BusinessException exception) {
 		// Vérifier que le pseudo est unique sur toute la plate-forme
-		// (check dans la base de données, par un try catch ou un if je sais pas)
 		try {
 			this.utilisateurDAO.checkPseudoUnique(pseudo);
 		} catch (BusinessException ex) {
@@ -88,7 +85,7 @@ public class UtilisateurManager
 	
 	private void checkEmailUnique(String email, BusinessException exception) {
 		// Vérifier que l'email est unique sur toute la plate-forme
-		// (check dans la base de données, par un try catch ou un if je sais pas)
+		// Comme pour PseudoUnique en mettant email en paramètre à la place
 	}
 	
 	*/

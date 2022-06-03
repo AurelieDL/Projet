@@ -60,7 +60,7 @@ public class ServletInscription extends HttpServlet {
 			System.out.println("Ces valeurs sont stockées comme attribut à la clé Utilisateur");
 			
 		
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("");
 		rd.forward(request, response);
 	}
 
