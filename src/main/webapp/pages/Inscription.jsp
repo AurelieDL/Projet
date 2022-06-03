@@ -1,68 +1,111 @@
-<%@ page import="fr.eni.java.projet.exceptions.LecteurMessage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page import = "fr.eni.java.projet.bo.Utilisateur" %>
+	
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-    <link rel="stylesheet" href="style.css">
-    <title>Inscription</title>
+<meta charset="UTF-8">
+<title>Inscription</title>
 </head>
-<header>ENI-Enchères</header>
-<body>
-    <h1>Inscription</h1>
-    <form action="ServletInscription" method ="post">
-	    <div>
-	        <label for="pseudo">Pseudo :</label>
-	        <input type="text" id="pseudo" name="pseudo">
-	    </div>
-	    <div>
-	        <label for="nom">Nom :</label>
-	        <input type="text" id="nom" name="nom">
-	    </div>
-	    <div>
-	        <label for="prenom">Prénom :</label>
-	        <input type="text" id="prenom" name="prenom">
-	    </div>
-	    <div>
-	        <label for="email">Email :</label>
-	        <input type="email" id="email" name="email">
-	    </div>
-	    <div>
-	        <label for="tel">Téléphone :</label>
-	        <input type="text" id="tel" name="telephone">
-	    </div>
-	    <div>
-	        <label for="rue">Rue :</label>
-	        <input type="text" id="rue" name="rue">
-	    </div>
-	    <div>
-	        <label for="cp">Code postal :</label>
-	        <input type="text" id="cp" name="codePostal">
-	    </div>
-	    <div>
-	        <label for="ville">Ville :</label>
-	        <input type="text" id="ville" name="ville">
-	    </div>
-    	<div>
-	        <label for="mdp">Mot de passe :</label>
-	        <input type="text" id="mdp" name="motDePasse">
-	    </div>
-	    <div>
-	        <label for="conf">Confirmation :</label>
-	        <input type="text" id="conf" name="conf">
-	    </div>
-	    <input type="submit" value="Envoyer">
-	    
-	    <% // Tentative de bouton retour %>
-	    <input type="reset" value="Retour" href="<%=request.getContextPath() %>/accueil.html">
-	    
-	    <a href="<%=request.getContextPath() %>/accueil.html">Retour</a>
-    </form>
 
-    <script src="script.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+<header class="header">
+	<nav class="navbar">
+		<div class="container">
+			<a href="#" class="navbar-brand text-uppercase font-weight-bold">ENI-ENCHERES</a>
+		</div>
+	</nav>
+</header>
+<body>
+<% Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
+	<div class="container">
+		<h2 class="mb-5" style="text-align: center">Mon Profil</h2>
+
+
+		<form class="shadow p-3 mb-5 bg-body rounded" action="ServletInscription"
+			method="post">
+
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-pseudo">Pseudo: </label> <input type="text"
+						name="pseudo" class="form-control" required>
+				</div>
+
+				<div class="col">
+					<label class="fw-bold" for="maj-email">Email:</label> <input type="text"
+						name="email" class="form-control" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-nom">Nom:</label> <input type="text" name="nom"
+						class="form-control" required>
+
+				</div>
+				<div class="col">
+					<label class="fw-bold" for="maj-prenom">Prénom:</label> <input type="text"
+						name="prenom" class="form-control" required>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-telephone">Téléphone:</label> <input type="text"
+						name="telephone" class="form-control">
+				</div>
+
+				<div class="col">
+					<label class="fw-bold" for="maj-rue">Rue:</label> <input type="text" name="rue"
+						class="form-control" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="maj-codePostal">Code Postal:</label> <input type="text"
+						name="codePostal" class="form-control" required>
+				</div>
+
+				<div class="col">
+					<label class="fw-bold" for="maj-ville">Ville:</label> <input type="text"
+						name="ville" class="form-control"
+						required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label class="fw-bold" for="mdp">Mot de passe : </label> 
+					<input type="password"
+						name="motDePasse" class="form-control"
+						required>
+				</div>
+
+				<div class="col">
+					<label class="fw-bold" for="conf-mdp">Confirmer le mot de passe: </label> 
+					<input
+						type="password" name="conf" class="form-control" autocomplete="off"
+						value="">
+						<p>${messageErreurMdp}</p>
+				</div>
+			</div>
+			<div style="text-align: center; padding-top: 20px;">
+				<input type="submit" name="submit" class="btn btn-primary"
+					value="Créer" />
+			</div>
+			<div style="text-align: center; padding-top: 20px;">
+				<input type="reset" name="reset" class="btn btn-primary"
+					value="Recommencer" />
+			</div>
+			<div style="text-align: center; padding-top: 20px;">
+				<a class="btn btn-primary"  href="<%=request.getContextPath()%>/accueil.html" role="button">Retour</a>
+			</div>
+			
+		</form>
+		
+	</div>
 </body>
 </html>

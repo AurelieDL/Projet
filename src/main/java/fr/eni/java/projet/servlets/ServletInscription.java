@@ -34,7 +34,7 @@ public class ServletInscription extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		// D'abord il faut récupérer les données saisies dans le formulaire de la jsp inscription.jsp (à faire)
+		// D'abord il faut récupérer les données saisies dans le formulaire de la jsp inscription.jsp
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -52,25 +52,17 @@ public class ServletInscription extends HttpServlet {
 		// C'est ICI qu'on fait un aller-retour IHM-DAL en passant par la BLL pour livrer le paquet à la BDD
 		// C'est aussi là que le Manager va contrôler pour s'assurer que la saisie respecte bien les critères demandés, puisqu'il est la porte d'entrée du chemin
 		Utilisateur user;
-		try {
-			user = utilisateurManager.Créer(utilisateurCréé);
-			System.out.println(user.toString());
-			
-			//On récupère la session avec tous les renseignements du profil, donc pas besoin de se connecter après
-			session.setAttribute("Utilisateur", user );
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
-			
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			
-			//On récupère la session avec tous les renseignements du profil, donc pas besoin de se connecter après
-			session.setAttribute("erreurs", e.getListeCodesErreur() );
-			RequestDispatcher rd = request.getRequestDispatcher("pages/Inscription.jsp");
-			rd.forward(request, response);
-		}
 		
+		user = utilisateurManager.Créer(utilisateurCréé);
+		System.out.println(user.toString());
+		//On récupère la session avec tous les renseignements du profil, donc pas besoin de se connecter après
+		session.setAttribute("Utilisateur", user );
+		System.out.println("Ces valeurs sont stockées comme attribut à la clé Utilisateur");
+			
 		
+		RequestDispatcher rd = request.getRequestDispatcher("");
+		rd.forward(request, response);
+
 	}
 
 }
