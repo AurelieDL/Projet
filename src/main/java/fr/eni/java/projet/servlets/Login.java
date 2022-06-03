@@ -38,8 +38,10 @@ public class Login extends HttpServlet {
 				UtilisateurManager utilisateurManager = new UtilisateurManager();
 				Utilisateur user = null;
 				try {
+					//On se connecte en passant en paramètres le username et le password
 					user = utilisateurManager.Connecter(username, password);
-					// On recupère la session, et on definit un attribut avec le user qu'on a recupere par le manager
+					
+					// On recupère la session, et on definit un attribut "user" avec le user qu'on a recupere par le manager
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
 												
@@ -48,12 +50,17 @@ public class Login extends HttpServlet {
 					rd.forward(request, response);
 				} catch (BusinessException e) {
 					
+					// Si l'utilisateur manager "throw" une exception , on recupère les saisies effectuées précedemment (username / password)
 					request.setAttribute("username", username);
 					request.setAttribute("password", password);
 					
+					// Si l'utilisateur manager "throw" une exception , on recupère la liste d'erreurs
+					// qu'on passe en parametre du request avec le username et le password
+					//pour eviter de vider le formulaire à chaque erreur
 					request.setAttribute("erreurs", e.getListeCodesErreur());
 					
 					System.out.println("Erreurs(servlet) : " + e.getListeCodesErreur());
+					
 					// par la suite il faudra rediriger vers la page d'accueil en mode connecté.
 					RequestDispatcher rd = request.getRequestDispatcher("pages/login.jsp");
 					rd.forward(request, response);

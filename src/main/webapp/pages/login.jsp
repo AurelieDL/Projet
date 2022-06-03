@@ -15,6 +15,7 @@
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
 <body>
+	<!--  On récupère ici, les attributs du doPost quand ça s'est mal passé (exceptions) -->
 	<% List<Integer> erreurs = (List<Integer>) request.getAttribute("erreurs"); %>
 	<% String username = (String) request.getAttribute("username");
 		if(username == null) username = ""; %>
@@ -41,8 +42,12 @@
 
 							<div class="form-outline mb-4">
 								<input type="text" id="form2Example18"
-									<% if((erreurs != null) && (erreurs.contains(20000) || erreurs.contains(20001))) 
-										{  
+									<%  
+									    // On verifie bien que la liste n'est pas vide, et qu'elle contient ou le code 20000 ou le code 20001
+										if((erreurs != null) && (erreurs.contains(20000) || erreurs.contains(20001))) 
+										{
+										
+										// is-invalid met la saisie utilisateur en contour rouge
 									%>
 										class="form-control form-control-lg is-invalid"
 									<% 
@@ -53,12 +58,14 @@
 										}
 										%> name="username" value="<%= username %>"/> <label
 									class="form-label" for="form2Example18">Identifiant</label>
+									
 									<% if(erreurs != null)
 										{
 											System.out.println("erreurs : " + erreurs);
 											if(erreurs.contains(20000))
 											{
 												System.out.println("Utilisateur vide");
+												//on restitue le message grâce à son code erreur
 									%>
 											<div id="validationServerUsernameFeedback" class="invalid-feedback">
 										        <%= LecteurMessage.getMessageErreur(20000) %>
@@ -67,6 +74,7 @@
 											
 											if((erreurs.contains(20001)))
 											{
+												//on restitue le message grâce à son code erreur
 										%>
 												<div id="validationServerUsernameFeedback" class="invalid-feedback">
 										        <%= LecteurMessage.getMessageErreur(20001) %>

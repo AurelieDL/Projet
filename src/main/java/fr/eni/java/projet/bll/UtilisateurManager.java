@@ -26,17 +26,23 @@ public class UtilisateurManager
 		
 		Utilisateur user;
 		try {
+			// on verifie d'abord si l'username existe et que le username n'est pas vide,
+			// sinon on rempli la listes des exception 
 			user = checkUser(username, exception);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			return null;
 		}
+		//arrivé ici, l'utilisateur existe, donc on verifie le mot de passe
 		if(user!= null) checkPassword(password, user, exception);
 		
 		if(exception.hasErreurs())
 		{
+			// on renvoie la liste d'erreurs dans une exception (on va pas jusquau return du coup)
 			throw exception;
-		}		
+		}
+		
+		//si tout s'est bien passé, on renvoie l'utilisateur
 		return user;		
 	}
 		
@@ -46,6 +52,7 @@ public class UtilisateurManager
 		
 		if(username.equals("") || username == null) // cf ajout avis
 		{
+			// On ajoute une erreur dans la liste des erreurs qui seront remontées sur la JSP
 			exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_USERNAME_NULL_ERREUR);
 		}else
 		{
@@ -54,10 +61,12 @@ public class UtilisateurManager
 			user = this.utilisateurDAO.selectByName(username);
 			if (user == null)
 			{
+				// On ajoute une erreur dans la liste des erreurs qui seront remontées sur la JSP
 				exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_USERNAME_NOT_EXIST_ERREUR);
 			}
 			}catch(NullPointerException e)
 			{
+				// On ajoute une erreur dans la liste des erreurs qui seront remontées sur la JSP
 				exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_USERNAME_NOT_EXIST_ERREUR);
 			}
 		}
