@@ -37,28 +37,31 @@ public class SellArticle extends HttpServlet {
 	
 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			//
 			// Recuperation des parametres du formulaire --> ok 
 			int noUtilisateur= Integer.valueOf(request.getParameter("noutilisateur"));
 			String nom= request.getParameter("nom");
 			String description= request.getParameter("description");
 			int categorie= Integer.valueOf(request.getParameter("categorie"));
+			
 			//String photo= request.getParameter("photo");
+			
 			double mise= Double.valueOf(request.getParameter("mise"));
 			Date dde = null;
+		
+			//try catch pour le format date
 			try {
 				dde = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dde"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Date dfe = null;
 			try {
 				dfe = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dfe"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			// Recuperation des parametres du formulaire suite
 			String rue = request.getParameter("rue");
 			int cp = Integer.valueOf(request.getParameter("cp"));
 			String ville = request.getParameter("ville");

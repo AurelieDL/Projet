@@ -1,6 +1,7 @@
 package fr.eni.java.projet.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,7 +32,13 @@ public class ForgotPassword extends HttpServlet {
 		String email = request.getParameter("mail");
     
 		UtilisateurManager utilisateurManager= new UtilisateurManager();
-		Utilisateur user2 = utilisateurManager.Recuperer(email);
+		Utilisateur user2;
+		try {
+			user2 = utilisateurManager.Recuperer(email);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			user2 = null;
+		}
 
 		request.setAttribute("user", user2);
 		RequestDispatcher rd = request.getRequestDispatcher("pages/emailSent.jsp");

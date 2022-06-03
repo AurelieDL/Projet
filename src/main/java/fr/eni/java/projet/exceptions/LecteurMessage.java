@@ -14,7 +14,7 @@ public abstract class LecteurMessage {
 	{
 		try
 		{
-			rb = ResourceBundle.getBundle("fr.eni.javaee.module4.messages.messages_erreur");
+			rb = ResourceBundle.getBundle("fr.eni.java.projet.exceptions.messages_erreur");
 		}
 		catch (Exception e) 
 		{

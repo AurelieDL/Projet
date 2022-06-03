@@ -1,5 +1,7 @@
 package fr.eni.java.projet.bll;
 
+import java.sql.SQLException;
+
 import fr.eni.java.projet.bo.Utilisateur;
 import fr.eni.java.projet.dal.DAOFactory;
 import fr.eni.java.projet.dal.UtilisateurDAO;
@@ -18,19 +20,79 @@ public class UtilisateurManager
 	}
 	
 	
-	public Utilisateur Connecter(String username, String password)
+	public Utilisateur Connecter(String username, String password) throws BusinessException
 	{
-		return this.utilisateurDAO.selectByName(username);	
+		BusinessException exception = new BusinessException();
 		
+		Utilisateur user;
+		try {
+			user = checkUser(username, exception);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+		if(user!= null) checkPassword(password, user, exception);
+		
+		if(exception.hasErreurs())
+		{
+			throw exception;
+		}		
+		return user;		
 	}
-	public boolean checkUser(String username)
+		
+	public Utilisateur checkUser(String username, BusinessException exception) throws SQLException
 	{
-		return true;
+		Utilisateur user = null;
+		
+		if(username.equals("") || username == null) // cf ajout avis
+		{
+			exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_USERNAME_NULL_ERREUR);
+		}else
+		{
+			try
+			{
+			user = this.utilisateurDAO.selectByName(username);
+			if (user == null)
+			{
+				exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_USERNAME_NOT_EXIST_ERREUR);
+			}
+			}catch(NullPointerException e)
+			{
+				exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_USERNAME_NOT_EXIST_ERREUR);
+			}
+		}
+		
+		return user;
 	}
 	
-	public Utilisateur Recuperer(String mail) 
+	public void checkPassword(String password, Utilisateur user, BusinessException exception) {
+		
+		if(password.equals("") || password == null)
+		{
+			exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_PASSWORD_NULL_ERREUR);
+		}else
+		{
+		
+			if(password.compareTo(user.getMotDePasse()) != 0)
+			{
+				exception.ajouterErreur(CodesResultatBLL.REGLE_LOGIN_PASSWORD_WRONG_ERREUR);
+			}
+		}
+		
+	}
+	
+	public Utilisateur Recuperer(String mail) throws SQLException 
 	{
-		return this.utilisateurDAO.selectByEmail(mail);
+		Utilisateur user = null;
+		
+		try {	 
+				user = this.utilisateurDAO.selectByEmail(mail);
+		}catch(NullPointerException e)
+		{
+			return null;
+		}
+		
+		return user;
 	}
 
 	public Utilisateur Créer(Utilisateur utilisateur) throws BusinessException {

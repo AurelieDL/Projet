@@ -1,3 +1,6 @@
+<%@ page import="fr.eni.java.projet.exceptions.LecteurMessage" %>
+<%@ page import="fr.eni.java.projet.bll.CodesResultatBLL" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,10 +15,15 @@
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
 <body>
+	<% List<Integer> erreurs = (List<Integer>) request.getAttribute("erreurs"); %>
+	<% String username = (String) request.getAttribute("username");
+		if(username == null) username = ""; %>
+	<% String password = (String) request.getAttribute("password"); 
+		if(password == null) password = ""; %>
 	<header class="header">
 		<nav class="navbar">
 			<div class="container">
-				<a href="#" class="navbar-brand text-uppercase font-weight-bold">ENI-ENCHERES</a>
+				<a href="Accueil" class="navbar-brand text-uppercase font-weight-bold">ENI-ENCHERES</a>
 			</div>
 		</nav>
 	</header>
@@ -33,14 +41,74 @@
 
 							<div class="form-outline mb-4">
 								<input type="text" id="form2Example18"
-									class="form-control form-control-lg" name="username"/> <label
+									<% if((erreurs != null) && (erreurs.contains(20000) || erreurs.contains(20001))) 
+										{  
+									%>
+										class="form-control form-control-lg is-invalid"
+									<% 
+										}else
+										{
+									%>	class="form-control form-control-lg" 
+									<%
+										}
+										%> name="username" value="<%= username %>"/> <label
 									class="form-label" for="form2Example18">Identifiant</label>
+									<% if(erreurs != null)
+										{
+											System.out.println("erreurs : " + erreurs);
+											if(erreurs.contains(20000))
+											{
+												System.out.println("Utilisateur vide");
+									%>
+											<div id="validationServerUsernameFeedback" class="invalid-feedback">
+										        <%= LecteurMessage.getMessageErreur(20000) %>
+										     </div>
+										<%  }
+											
+											if((erreurs.contains(20001)))
+											{
+										%>
+												<div id="validationServerUsernameFeedback" class="invalid-feedback">
+										        <%= LecteurMessage.getMessageErreur(20001) %>
+										     	</div>
+										<%  }
+										}
+									%>
 							</div>
 
 							<div class="form-outline mb-4">
 								<input type="password" id="form2Example28"
-									class="form-control form-control-lg" name="password"/> <label
+									<% if((erreurs != null) && (erreurs.contains(20002) || erreurs.contains(20003))) 
+										{  
+									%>
+										class="form-control form-control-lg is-invalid"
+									<% 
+										}else
+										{
+									%>	class="form-control form-control-lg" 
+									<%
+										}
+										%> name="password" value="<%= password %>" /> <label
 									class="form-label" for="form2Example28">Mot de passe</label>
+									<% if(erreurs != null)
+										{
+											if((erreurs.contains(CodesResultatBLL.REGLE_LOGIN_PASSWORD_NULL_ERREUR)))
+											{
+									%>
+											<div id="validationServerUsernameFeedback" class="invalid-feedback">
+										        <%= LecteurMessage.getMessageErreur(CodesResultatBLL.REGLE_LOGIN_PASSWORD_NULL_ERREUR) %>
+										     </div>
+										<%  }
+											
+											if((erreurs.contains(CodesResultatBLL.REGLE_LOGIN_PASSWORD_WRONG_ERREUR)))
+											{
+										%>
+												<div id="validationServerUsernameFeedback" class="invalid-feedback">
+										        <%= LecteurMessage.getMessageErreur(CodesResultatBLL.REGLE_LOGIN_PASSWORD_WRONG_ERREUR) %>
+										     	</div>
+										<%  }
+										}
+									%>
 							</div>
 
 							<div class="pt-1 mb-4">
@@ -48,10 +116,10 @@
 							</div>
 
 							<p class="small mb-5 pb-lg-2">
-								<a class="text-muted" href="#!">Mot de passe oublié</a>
+								<a class="text-muted" href="ForgotPassword">Mot de passe oublié</a>
 							</p>
 							<p>
-								Pas de compte? <a href="#!" class="link-info">En créer un ici!</a>
+								Pas de compte? <a href="ServletInscription" class="link-info">En créer un ici!</a>
 							</p>
 
 						</form>

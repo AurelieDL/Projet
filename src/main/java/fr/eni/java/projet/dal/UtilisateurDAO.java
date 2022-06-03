@@ -1,5 +1,6 @@
 package fr.eni.java.projet.dal;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.java.projet.bo.Utilisateur;
@@ -11,9 +12,9 @@ public interface UtilisateurDAO {
 	
 	public Utilisateur selectById(int noUtilisateur);
 	
-	public Utilisateur selectByName(String name);
+	public Utilisateur selectByName(String name) throws SQLException;
 	
-	public Utilisateur selectByEmail(String mail );
+	public Utilisateur selectByEmail(String mail ) throws SQLException;
 
 	public List<Utilisateur> selectAll();
 

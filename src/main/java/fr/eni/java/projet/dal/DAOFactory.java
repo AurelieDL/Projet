@@ -8,11 +8,6 @@ public abstract class DAOFactory {
 		return new UtilisateurDAOJdbcImpl();
 	}
   
-	public static ArticleDAO getArticleDAO() {
-		
-		return new ArticleDAOJdbcImpl();
-	}
-  
 	public static ArticleVenduDAO getArticleVenduDAO() {
 		
     return new ArticleVenduDAOJdbcImpl();

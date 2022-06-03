@@ -15,7 +15,7 @@
 <body>
 
 
-<% Utilisateur user = (Utilisateur) session.getAttribute("Utilisateur"); %>
+<% Utilisateur user = (Utilisateur) session.getAttribute("user"); %>
             
 <jsp:include page="pages/fragments/navbar.jsp"/>
 
@@ -56,6 +56,70 @@
 		</div>
 	</div>
 </section>
+
+<% if(user != null) { %>
+
+	<section class="py-2 container">
+	
+		<div class="row w-50 d-flex flex-row mb-3">
+		
+			<div class="form-check col-md-6 p-2">
+			  <input type="radio" class="btn-check" name="options-outlined" id="primary-outlined" autocomplete="off" checked>
+				<label class="btn btn-outline-primary" for="success-primary">Achats</label>
+			</div>	
+		
+			<div class="form-check col-md-6 p-2">
+			  <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off">
+				<label class="btn btn-outline-success" for="success-outlined">Ventes</label>
+			</div>
+		</div>
+	
+		<div class="row w-50">
+			<div class="col">
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+				  <label class="form-check-label" for="exampleRadios1">
+				    Enchères ouvertes
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+				  <label class="form-check-label" for="exampleRadios2">
+				    Mes enchères en cours
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+				  <label class="form-check-label" for="exampleRadios3">
+				    Mes enchères remportées
+				  </label>
+				</div>
+			</div>
+			
+			<div class="col">
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+				  <label class="form-check-label" for="exampleRadios1">
+				    Mes ventes en cours
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+				  <label class="form-check-label" for="exampleRadios2">
+				    Ventes non débutées
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
+				  <label class="form-check-label" for="exampleRadios3">
+				    Ventes terminées
+				  </label>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+<% } %>
 
 <main>
 	<div class="album py-5 bg-light">

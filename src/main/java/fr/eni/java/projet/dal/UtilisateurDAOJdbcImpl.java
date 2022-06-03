@@ -98,7 +98,7 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return user;
 	}
 
-	public Utilisateur selectByName(String name) {
+	public Utilisateur selectByName(String name) throws SQLException {
 		Utilisateur user = null;
 		Connection cnx = null;
 
@@ -129,8 +129,8 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			}
 			System.out.println(user.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			return null;
 		} finally {
 			try {
 				cnx.close();
@@ -141,7 +141,7 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return user;
 	}
 
-	public Utilisateur selectByEmail(String email) {
+	public Utilisateur selectByEmail(String email) throws SQLException {
 		Utilisateur user = null;
 		Connection cnx = null;
 
@@ -169,9 +169,10 @@ class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			return null;
 		}
+		
 		return user;
 	}
 

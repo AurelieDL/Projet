@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.java.projet.bll.UtilisateurManager;
 import fr.eni.java.projet.bo.Utilisateur;
+import fr.eni.java.projet.exceptions.BusinessException;
 
 /**
  * Servlet implementation class Inscription
@@ -50,12 +51,26 @@ public class ServletInscription extends HttpServlet {
 		UtilisateurManager utilisateurManager = new UtilisateurManager();
 		// C'est ICI qu'on fait un aller-retour IHM-DAL en passant par la BLL pour livrer le paquet à la BDD
 		// C'est aussi là que le Manager va contrôler pour s'assurer que la saisie respecte bien les critères demandés, puisqu'il est la porte d'entrée du chemin
-		Utilisateur user = utilisateurManager.Créer(utilisateurCréé);
-		System.out.println(user.toString());
-		//On récupère la session avec tous les renseignements du profil, donc pas besoin de se connecter après
-		session.setAttribute("Utilisateur", user );
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.forward(request, response);
+		Utilisateur user;
+		try {
+			user = utilisateurManager.Créer(utilisateurCréé);
+			System.out.println(user.toString());
+			
+			//On récupère la session avec tous les renseignements du profil, donc pas besoin de se connecter après
+			session.setAttribute("Utilisateur", user );
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+			
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			
+			//On récupère la session avec tous les renseignements du profil, donc pas besoin de se connecter après
+			session.setAttribute("erreurs", e.getListeCodesErreur() );
+			RequestDispatcher rd = request.getRequestDispatcher("pages/Inscription.jsp");
+			rd.forward(request, response);
+		}
+		
+		
 	}
 
 }

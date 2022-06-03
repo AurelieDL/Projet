@@ -55,7 +55,7 @@ class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			
 			PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM ARTICLES_VENDUS");
 			ResultSet rs = stmt.executeQuery();
-			System.out.println(rs);
+			//System.out.println(rs);
 			while(rs.next())
 			{
 				ArticleVendu article = new ArticleVendu();
